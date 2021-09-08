@@ -17,5 +17,10 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public IActionResult Sminal()
+        {
+            return View();
+        }
     }
 }
