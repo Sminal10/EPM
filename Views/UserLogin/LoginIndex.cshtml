@@ -1,0 +1,83 @@
+﻿@model EPM.Models.LoginClass
+
+@{
+    ViewData["Title"] = "LoginIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<div id="loginbox">
+    <div class="row" id="errmsg">
+        <div class="col">
+            <h1 class="text-danger"> @Html.ViewData["Message"]</h1>
+        </div>
+    </div>
+    <div class="row" id="loginarea">
+        <div class="col-md-4">
+            <form asp-action="LoginIndex">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" id="username" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" id="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+        </div> 
+    </div>
+</div>*@
+
+
+    <div  id="errmsg" style="margin-top:2em;margin-left:20em; position:fixed;">
+        <div class="col">
+            <h1 class="text-danger"> @Html.ViewData["Message"]</h1>
+            @*<h1 class="text-danger">User Login Details Failed</h1>*@
+        </div>
+    </div>
+<br />
+<div class="container card" style="width: 25rem; height: 20rem; margin-top: 110px;">
+    <div class="card-body">
+        <h5 class="card-title text-center font-weight-bold">Employee Login</h5>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a> -->
+        <form asp-action="LoginIndex">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" id="username" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" id="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            <a href="~/AdminLogin/AdminLoginIndex" class="card-link">Admin Login</a>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" id="btnLogin" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+
+     $("#errmsg").fadeOut(5000);
+    $("#username").val("jhondoe");
+    $("#password").val("jhon");
+
+</script>

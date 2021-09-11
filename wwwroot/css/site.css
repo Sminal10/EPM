@@ -61,6 +61,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-image:url('../Image/imagetwo.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+  width:100%;
 }
 .footer {
   position: absolute;
@@ -68,4 +72,20 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+#loginbox{
+    /*background-color:white;
+    padding-left:5em;
+
+    margin-left: 300px;
+    margin-right:300px;*/
+}
+
+#loginarea{
+    margin-left:20px;
+}
+
+#btnLogin{
+    margin-left: 7em;
 }

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "WelcomeAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Welcome <uppercase>@TempData["username"]</uppercase></h1>
+
+@using (Html.BeginForm("Logout", "UserLogin", FormMethod.Post))
+{
+    <a href="~/AdminLogin/RedirectAdminLogout">Logout</a>
+}
+
