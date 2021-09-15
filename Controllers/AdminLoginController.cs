@@ -43,7 +43,7 @@ namespace EPM.Controllers
                 HttpContext.Session.SetString("username", adlc.AdminUserName.ToString());
                 TempData["username"] = adlc.AdminUserName;
 
-                return RedirectToAction("WelcomeAdmin");
+                return RedirectToAction("WelcomeAdminnew");
             }
             else
             {
@@ -55,9 +55,14 @@ namespace EPM.Controllers
 
         public ActionResult WelcomeAdmin()
         {
+
             return View();
         }
+        public ActionResult WelcomeAdminnew()
+        {
 
+            return View();
+        }
         [HttpPost]
         public ActionResult AdminLogout()
         {
