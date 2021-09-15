@@ -1,0 +1,267 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminRegistration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .error {
+            font-style: italic;
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1 style="text-align:center">Admin Registration</h1>
+    <marquee><h4 style="color:blue">Please Get Yourself Register Here</h4></marquee>
+    <form id="registration">
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <label for="txtfname" id="lblfname">First Name</label>
+                <input type="text" class="form-control" name="txtfname" id="txtfname" required />
+            </div>
+
+
+            <div class="col-md-2">
+                <label for="txtmname" id="lblmname">Middle Name</label>
+                <input type="text" class="form-control" name="txtmname" id="txtmname" required />
+            </div>
+
+
+            <div class="col-md-2">
+                <label for="txtlname" id="lbllname">Last Name</label>
+                <input type="text" class="form-control" name="txtlname" id="txtlname" required />
+            </div>
+
+
+        </div>
+
+
+        <div class="row" style="padding-bottom:7px">
+
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtDate" id="lblDate">Date</label>
+                <input type="date" class="form-control" id="txtDate" name="txtDate" required>
+              </div>
+
+            <div class="col-md-2">
+                <label for="txtgender" id="lblgender">Gender</label>
+
+                <input type="text" class="form-control" id="txtgender" name="txtgender" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="txtstatus" id="lblstatus">Marital Status</label>
+
+                <input type="text" class="form-control" id="txtstatus" name="txtstatus" required>
+            </div>
+
+        </div>
+
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtMobile" id="lblmobile">Mobile</label>
+
+                <input type="text" class="form-control" name="txtMobile" id="txtMobile" maxlength="10" required onkeypress="return isNumberKey(event,this)" />
+            </div>
+            <div class="col-md-2">
+                <label for="txtphone" id="lblphone">Phone</label>
+
+                <input type="text" class="form-control" name="txtphone" id="txtphone" maxlength="12"  onkeypress="return isNumberKey(event,this)" />
+            </div>
+            <div class="col-md-2">
+                <label for="txtother" id="lblother">Alternative Mobile</label>
+
+                <input type="text" class="form-control" name="txtother" id="txtother" maxlength="10"  onkeypress="return isNumberKey(event,this)" />
+            </div>
+        </div>
+
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-6">
+                <label for="txtadd" id="lblstate">Address</label>
+
+                <input type="text" class="form-control" name="txtadd" id="txtadd" required />
+            </div>
+        </div>
+
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtstate" id="lblstate">State</label>
+
+                <input type="text" class="form-control" name="txtstate" id="txtstate" required />
+            </div>
+            <div class="col-md-2">
+                <label for="txtcity" id="lblcity">City</label>
+
+                <input type="text" class="form-control" name="txtcity" id="txtcity" required />
+            </div>
+            <div class="col-md-2">
+                <label for="txtpin" id="lblpin">Pincode</label>
+
+                <input type="text" class="form-control" name="txtpin" id="txtpin" required />
+            </div>
+        </div>
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtDOJ" id="lblDOJ">Date of Join</label>
+
+                <input type="date" class="form-control" id="txtDOJ" name="txtDOJ" required>
+            </div>
+            <div class="col-md-2">
+                <label for="txtsal" id="lblsal">Salary</label>
+                <input type="text" class="form-control" name="txtsal" id="txtsal" required />
+            </div>
+            <div class="col-md-2">
+                <label for="txtEdate" id="lblEdate">End Date</label>
+
+                <input type="date" class="form-control" id="txtEdate" name="txtEdate" required>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtQual" id="lblqual">Qualifications</label>
+
+                <input type="text" class="form-control" id="txtQual" name="txtQual" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="txtexp" id="lblexp">Experience</label>
+
+                <input type="text" class="form-control" id="txtexp" name="txtexp" required>
+            </div>
+            <div class="col-md-2">
+                <label for="txtDesi" id="lblDesi">Designation</label>
+                <input type="text" class="form-control" id="txtDesi" name="txtDesi" required>
+            </div>
+
+        </div>
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+            <div class="col-md-2">
+                <label for="txtemail" id="lblemail">Email</label>
+
+                <input type="text" class="form-control" id="txtemail" name="txtemail" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="txtpass" id="lblpass">Password</label>
+
+                <input type="password" class="form-control" id="txtpass" name="txtpass" required>
+            </div>
+            <div class="col-md-2">
+                <label for="txtcpass" id="lblcpass">Confirm Password</label>
+
+                <input type="password" class="form-control" id="txtcpass" name="txtcpass" required>
+            </div>
+
+
+        </div>
+
+        <div class="row" style="padding-bottom:7px">
+            <div class="col-md-3"> </div>
+
+            <div class="col-md-6">
+
+
+                <input type="submit" value="Submit" class="btn btn-primary" id="btnLogin" />
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {     
+        valiadte();
+     
+       
+    });
+
+    function valiadte() {
+       
+        $("#registration").validate({
+            rules: {
+
+                txtmname: "required",
+                txtlname: "required",
+                txtDate: "required",
+                txtgender: "required",
+                txtMobile: "required",
+                txtadd: "required",
+                txtstate: "required",
+                txtcity: "required",
+                txtpin: "required",
+                txtDOJ: "required",               
+                txtEDate: "required",
+                txtsal: "required",           
+                txtQual: "required",
+                txtDesi: "required",
+                txtemail: {
+                    required: true,
+                    email: true
+                },
+                txtpass: {
+                    required: true,
+                    minlength: 5
+                },
+                txtcpass: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#txtpass",
+                    
+                },
+            },
+
+
+        });
+    }
+
+    function isNumberKey(evt, element) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46))
+            return false;
+        else {
+            var len = $(element).val().length;
+            var index = $(element).val().indexOf('.');
+            if (index > 0 && charCode == 46) {
+                return false;
+            }
+            if (index > 0) {
+                var CharAfterdot = (len + 1) - index;
+                if (CharAfterdot > 100) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+
+</script>
