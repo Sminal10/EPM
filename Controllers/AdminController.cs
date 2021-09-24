@@ -12,5 +12,10 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public IActionResult AdminDashBoard()
+        {
+            return View();
+        }
     }
 }
