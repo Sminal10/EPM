@@ -53,6 +53,7 @@
 
 
         <div class="row" style="padding-bottom:7px">
+            @*Date of Birth*@
 
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
@@ -60,141 +61,141 @@
                 <input type="date" class="form-control" id="txtDate" name="txtDate" required>
             </div>
 
+            @*Gender*@
             <div class="col-md-4">
                 <label for="txtgender" id="lblgender">Gender</label>
-
                 <input type="text" class="form-control" id="txtgender" name="txtgender" required>
             </div>
 
+            @*Marital Status*@
             <div class="col-md-4">
                 <label for="txtstatus" id="lblstatus">Marital Status</label>
-
                 <input type="text" class="form-control" id="txtstatus" name="txtstatus" required>
             </div>
-
         </div>
 
-
+        @*Mobile*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
                 <label for="txtMobile" id="lblmobile">Mobile</label>
-
                 <input type="text" class="form-control" name="txtMobile" id="txtMobile" maxlength="10" required onkeypress="return isNumberKey(event,this)" />
             </div>
+
+                @*Phone*@
             <div class="col-md-4">
                 <label for="txtphone" id="lblphone">Phone</label>
-
                 <input type="text" class="form-control" name="txtphone" id="txtphone" maxlength="12" onkeypress="return isNumberKey(event,this)" />
             </div>
+
+            @*Alternative Mobile*@
             <div class="col-md-4">
                 <label for="txtother" id="lblother">Alternative Mobile</label>
-
                 <input type="text" class="form-control" name="txtother" id="txtother" maxlength="10" onkeypress="return isNumberKey(event,this)" />
             </div>
         </div>
 
-
+        @*Address*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-12">
                 <label for="txtadd" id="lblstate">Address</label>
-
                 <input type="text" class="form-control" name="txtadd" id="txtadd" required />
             </div>
         </div>
 
-
+        @*State*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
                 <label for="txtstate" id="lblstate">State</label>
-
                 <input type="text" class="form-control" name="txtstate" id="txtstate" required />
             </div>
+
+            @*City*@
             <div class="col-md-4">
                 <label for="txtcity" id="lblcity">City</label>
-
                 <input type="text" class="form-control" name="txtcity" id="txtcity" required />
             </div>
+
+            @*Pincode*@
             <div class="col-md-4">
                 <label for="txtpin" id="lblpin">Pincode</label>
-
                 <input type="text" class="form-control" name="txtpin" id="txtpin" required />
             </div>
         </div>
 
+        @*Date of Joining*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
                 <label for="txtDOJ" id="lblDOJ">Date of Join</label>
-
                 <input type="date" class="form-control" id="txtDOJ" name="txtDOJ" required>
             </div>
+
+              @*Salary*@
             <div class="col-md-4">
                 <label for="txtsal" id="lblsal">Salary</label>
                 <input type="text" class="form-control" name="txtsal" id="txtsal" required />
             </div>
+
+            @*End Date*@
             <div class="col-md-4">
                 <label for="txtEdate" id="lblEdate">End Date</label>
-
                 <input type="date" class="form-control" id="txtEdate" name="txtEdate" required>
             </div>
-
         </div>
 
+        @*Qualifications*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
                 <label for="txtQual" id="lblqual">Qualifications</label>
-
                 <input type="text" class="form-control" id="txtQual" name="txtQual" required>
             </div>
 
+            @*Experience*@
             <div class="col-md-4">
                 <label for="txtexp" id="lblexp">Experience</label>
-
                 <input type="text" class="form-control" id="txtexp" name="txtexp" required>
             </div>
+   
+            @*Designation*@
             <div class="col-md-4">
                 <label for="txtDesi" id="lblDesi">Designation</label>
                 <input type="text" class="form-control" id="txtDesi" name="txtDesi" required>
             </div>
-
         </div>
 
+        @*Email*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
             <div class="col-md-4">
                 <label for="txtemail" id="lblemail">Email</label>
-
                 <input type="text" class="form-control" id="txtemail" name="txtemail" required>
             </div>
 
+            @*Password*@
             <div class="col-md-4">
                 <label for="txtpass" id="lblpass">Password</label>
-
                 <input type="password" class="form-control" id="txtpass" name="txtpass" required>
             </div>
+
+            @*Confirm Password*@
             <div class="col-md-4">
                 <label for="txtcpass" id="lblcpass">Confirm Password</label>
-
                 <input type="password" class="form-control" id="txtcpass" name="txtcpass" required>
             </div>
-
-
         </div>
 
+        @*Submit Button*@
         <div class="row" style="padding-bottom:7px">
             @*<div class="col-md-3"> </div>*@
-
             <div class="col-md-12 text-center">
             <input type="submit" value="Submit" class="btn btn-primary" id="btnRegister" />
-
-
             </div>
-
         </div>
+    
     </form>
 </div>
 </body>
@@ -203,11 +204,16 @@
 <script>
     $(document).ready(function () {     
         valiadte();
-     
-       
+      
+        gettingDate();
+        
     });
 
     $(".col-md-4").addClass("text-center");
+    $(".col-md-12").addClass("text-center");
+    $("#txtDate").addClass("text-center");
+    $("#txtDOJ").addClass("text-center");
+    $("#txtEdate").addClass("text-center");
     $('label').addClass('fw-bold');
 
     function valiadte() {
@@ -247,6 +253,14 @@
 
 
         });
+    }
+
+    function gettingDate() {
+        var today = new Date();
+        document.getElementById("txtDate").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        document.getElementById("txtDOJ").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        document.getElementById("txtEdate").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
     }
 
     function isNumberKey(evt, element) {
