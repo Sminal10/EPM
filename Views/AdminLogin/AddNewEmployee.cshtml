@@ -1,0 +1,502 @@
+﻿
+@{
+    ViewData["Title"] = "AddNewEmployee";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .row {
+        margin-bottom:10px;
+    }
+</style>
+
+<div id="Heading">
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i> Employee Registration Form</h1>
+</div>
+<div id="dvAddEmployee" style="margin-top:30px;">
+    <div class="row">
+        @* First Name *@
+        <div class="col-md-4">
+            <label for="txtFname" id="lblFname"><i class="fa fa-user"></i>  First Name</label>
+            <input type="text" class="form-control" placeholder="Enter First Name" id="txtFname"/>
+        </div>
+
+        @* Middle Name *@
+        <div class="col-md-4">
+            <label for="txtMname" id="lblMname"><i class="fa fa-user"></i> Middle Name</label>
+            <input type="text" class="form-control" placeholder="Enter Middle Name" id="txtMname"/>
+        </div>
+
+        @* Last Name *@
+        <div class="col-md-4">
+            <label for="txtLname" id="lblLname"> <i class="fa fa-user"></i> Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter Last Name" id="txtLname"/>
+        </div>
+    </div>
+    <div class="row">
+        @* BirthDate *@
+        <div class="col-md-4">
+            <label for="txtDob" id="lblDate"><i class="fa fa-birthday-cake"></i> Date Of Birth</label>
+            <input type="date" class="form-control" id="txtDob" placeholder="1999-07-10">
+        </div>
+
+        @*Gender*@
+        <div class="col-md-4">
+            <label for="ddlGndr" id="lblGender">Gender</label>
+            <select class="form-control" id="ddlgndr">
+                <option selected value="0">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+
+        @*Marital Status*@
+        <div class="col-md-4">
+            <label for="ddlMS" id="lblStatus">Marital Status</label>
+            <select class="form-control" id="ddlMS">
+                <option selected value="0">Select Martital Status</option>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        @* Phone Number *@
+        <div class="col-md-4">
+            <label for="txtPhonenum" id="lblPhonenum">Primary Phone Number</label>
+            <input type="text" class="form-control" name="txtPhonenum" id="txtPhonenum" maxlength="10" placeholder="1234567890"/>
+        </div>
+
+        @* Alternate Number *@
+        <div class="col-md-4">
+            <label for="txtAltnum" id="lblmobile">Alternate Phone Number</label>
+            <input type="text" class="form-control" name="txtAltnum" id="txtAltnum" maxlength="10" placeholder="1234567890"/>
+        </div>
+
+        @* Address Box *@
+        <div class="col-md-4">
+            <label for="txtAdd">Address</label>
+            <textarea class="form-control" id="txtAdd" rows="2" placeholder="Enter Address"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        @* State Name *@
+        <div class="col-md-4">
+            <label for="ddlState" id="lblState">State</label>
+            <select class="form-control" name="state" id="ddlState">
+                <option selected value="0">Select State</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                <option value="Daman and Diu">Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+            </select>
+        </div>
+
+        @* City Name *@
+        <div class="col-md-4">
+            <label for="txtCityname" id="lblCityname">City Name</label>
+            <input type="text" class="form-control" name="txtCity" id="txtCity" />
+        </div>
+
+        @* Pincode *@
+         <div class="col-md-4">
+             <label for="txtPincode" id="lblPincode">Pincode</label>
+             <input type="text" class="form-control" name="txtPincode" id="txtPincode" maxlength="10" placeholder="1234"/>
+         </div>
+    </div>
+    <div class="row">
+        @* Salary *@
+        <div class="col-md-4">
+            <label for="txtSalary" id="lblSalary">Salary</label>
+            <input type="text" class="form-control" name="txtSalary" id="txtSalary" placeholder="Enter Salary" />
+        </div>
+
+        @* Date of Joining *@
+        <div class="col-md-4">
+            <label for="txtDoj" id="lblDoj">Date Of Joining</label>
+            <input type="date" class="form-control" id="txtDoj">
+        </div>
+
+        @*Qualification*@
+        <div class="col-md-4">
+            <label for="ddlQf" id="lblQf">Qualification</label>
+            <select class="form-control" id="ddlQf">
+                <option selected value="0">Select Qualification</option>
+                <option value="10th">10th</option>
+                <option value="12th">12th</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Gradutaion">Graduation</option>
+                <option value="PostGradutaion">Post Graduation</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+
+        @* Email id / Username *@
+        <div class="col-md-6">
+            <label for="txtEmailid" id="lblEmailid" title="This will be your username">Email Id <i class="fa fa-question-circle" title="This will be your username"></i></label>
+            <input type="email" class="form-control" name="txtEmailid" id="txtEmailid" placeholder="Enter Email id" title="This will be your username" />
+        </div>
+
+        @* Password *@
+        <div class="col-md-6">
+            <label for="txtPass" id="lblPass" title="Enter Login Password">Password <i class="fa fa-question-circle" title="Enter Login Password"></i></label>
+            <input type="password" class="form-control" name="txtPass" id="txtPass" placeholder="Enter Password" title="Enter Login Password" />
+        </div>
+    </div>
+    <div class="row text-center">
+        <input type="button" value="Register" class="btn btn-primary" id="btnSubmit"/>
+        <input type="button" value="Cancel"  class="btn btn-danger" id="btnReset"/>
+    </div>
+</div>
+
+<script>
+    $(".col-md-4").addClass("text-center");
+    $(".col-md-4").css({
+        fontSize: 15
+    });
+    $(".col-md-6").addClass("text-center");
+    $(".col-md-6").css({
+        fontSize: 15
+    });
+
+    // Submit
+    $("#btnSubmit").click(function () {
+        ValidateForm();
+    })
+
+    // Reset 
+    $("#btnReset").click(function () {
+        window.location.reload();
+    })
+
+    // Validates Employee Registration Form
+    function ValidateForm() {
+        var isValid = true;
+
+        var fname = $("#txtFname");
+        var mname = $("#txtMname");
+        var lname = $("#txtLname");
+        var dob = $("#txtDob");
+        var gender = $("#ddlgndr");
+        var maritalstatus = $("#ddlMS");
+        var phnum = $("#txtPhonenum");
+        var altphnum = $("#txtAltnum");
+        var addr = $("#txtAdd");
+        var state = $("#ddlState");
+        var state = $("#ddlState");
+        var city = $("#txtCity");
+        var pincode = $("#txtPincode");
+        var salary = $("#txtSalary");
+        var doj = $("#txtDoj");
+        var qlf = $("#ddlQf");
+        var email = $("#txtEmailid");
+        var pwd = $("#txtPass");
+
+        // Firstname
+        if ($.trim((fname).val()) == "" || $.trim((fname).val()) == null) {
+            isValid = false;
+            $(fname).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(fname).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Middlename
+        if ($.trim((mname).val()) == "" || $.trim((mname).val()) == null) {
+            isValid = false;
+            $(mname).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(mname).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Lastname
+        if ($.trim((lname).val()) == "" || $.trim((lname).val()) == null) {
+            isValid = false;
+            $(lname).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(lname).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Date of Birth
+        if ($.trim((dob).val()) == "" || $.trim((dob).val()) == null) {
+            isValid = false;
+            $(dob).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(dob).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Gender
+        if ($.trim((gender).val()) == 0 || $.trim((gender).val()) == null) {
+            isValid = false;
+            $(gender).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(gender).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Marital Status
+        if ($.trim((maritalstatus).val()) == 0 || $.trim((maritalstatus).val()) == null) {
+            isValid = false;
+            $(maritalstatus).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(maritalstatus).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Phone Number
+        if ($.trim((phnum).val()) == "" || $.trim((maritalstatus).val()) == null) {
+            isValid = false;
+            $(phnum).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(phnum).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Alternate Number
+        if ($.trim((altphnum).val()) == "" || $.trim((altphnum).val()) == null) {
+            isValid = false;
+            $(altphnum).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(altphnum).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Address
+        if ($.trim((addr).val()) == "" || $.trim((addr).val()) == null) {
+            isValid = false;
+            $(addr).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(addr).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // State
+        if ($.trim((state).val()) == 0 || $.trim((state).val()) == null) {
+            isValid = false;
+            $(state).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(state).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // City
+        if ($.trim((city).val()) == "" || $.trim((city).val()) == null) {
+            isValid = false;
+            $(city).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(city).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Pincode
+        if ($.trim((pincode).val()) == "" || $.trim((pincode).val()) == null) {
+            isValid = false;
+            $(pincode).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(pincode).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Salary
+        if ($.trim((salary).val()) == "" || $.trim((salary).val()) == null) {
+            isValid = false;
+            $(salary).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(salary).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Date of Joining
+        if ($.trim((doj).val()) == "" || $.trim((doj).val()) == null) {
+            isValid = false;
+            $(doj).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(doj).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Qualification
+        if ($.trim((qlf).val()) == 0 || $.trim((qlf).val()) == null) {
+            isValid = false;
+            $(qlf).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(qlf).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Email
+        if ($.trim((email).val()) == 0 || $.trim((email).val()) == null) {
+            isValid = false;
+            $(email).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(email).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        // Password
+        if ($.trim((pwd).val()) == 0 || $.trim((pwd).val()) == null) {
+            isValid = false;
+            $(pwd).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isValid = true;
+            $(pwd).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    }
+</script>
+
