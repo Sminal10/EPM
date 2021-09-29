@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EPM.Models
 {
-    public class ConnectionString
+    public class ModelConnectionString
     {
         public string DefaultConnection { get; set; }
     }

@@ -27,7 +27,12 @@ namespace EPM
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddControllersWithViews();
+             services.AddControllersWithViews();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.Configure<ModelConnectionString>(Configuration.GetSection("ConnectionStrings"));
+            services.AddControllers().AddXmlDataContractSerializerFormatters();
+
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
@@ -35,9 +40,6 @@ namespace EPM
                 options.IdleTimeout = TimeSpan.FromMinutes(10);
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
-            services.AddControllers().AddXmlDataContractSerializerFormatters();
 
             services.AddHttpContextAccessor();
         }
