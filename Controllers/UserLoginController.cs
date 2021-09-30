@@ -23,7 +23,7 @@ namespace EPM.Controllers
         [HttpPost]
         public ActionResult LoginIndex(LoginClass lc)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=LAPTOP-ORT7DDTM;Initial Catalog=EPM;Integrated Security=True");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
 
             string sqlquery = "SELECT EmpUsername,EmpPassword FROM [dbo].[Employee] WHERE EmpUsername = @EmpUsername AND EmpPassword = @EmpPassword";
 
