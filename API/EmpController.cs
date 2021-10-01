@@ -23,7 +23,7 @@ namespace EPM.API
             appsetting = app;
         }
 
-        // GET: api/Emp/GetAllEmp
+        // GET: api/Emp
         [HttpGet]
         [ActionName("GetAllEmp")]
         public IEnumerable<ModelGetEmp> GetEmp()

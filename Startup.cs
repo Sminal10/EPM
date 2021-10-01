@@ -37,6 +37,7 @@ namespace EPM
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddSingleton<IConfiguration>(Configuration);
             services.Configure<ModelConnectionString>(Configuration.GetSection("ConnectionStrings"));
             services.AddControllers().AddXmlDataContractSerializerFormatters();
             services.AddHttpContextAccessor();
