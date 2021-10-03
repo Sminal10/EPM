@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "GetAllEmployee";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">Employee List</h2>
+<br />
+
+<div id="showData" class="mt-5">
+    <table class="table table-striped table-responsive-md">
+        <thead id="thead">
+            <tr>
+                <th>Id</th>
+                <th>Emp Id</th>
+                <th>FirstName</th>
+                <th>MiddleName</th>
+                <th>LastName</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Mobile Number</th>
+                <th>Alternate Number</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        showData();
+    })
+
+
+    function showData() {
+        $("#tbody").html('');
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/Emp',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    //var date = new Date(item.bdate);
+                    //var newdate = date.getDay()+1 + '/' + date.getMonth() + '/' + date.getFullYear();
+                    strdata = "<tr>" +
+                        "<td>" + item.id + "</td>" +
+                        "<td>" + item.empid + "</td>" +
+                        "<td>" + item.fname + "</td>" +
+                        "<td>" + item.mname + "</td>" +
+                        "<td>" + item.lname + "</td>" +
+                        "<td>" + item.bdate + "</td>" +
+                        "<td>" + item.gender + "</td>" +
+                        "<td>" + item.mobilenum + "</td>" +
+                        "<td>" + item.altnum + "</td>" +
+                        "<td>" + item.address + "</td>" +
+                        "<td style='width:70px;text-align: center;'><a href='#' Title='Edit' id='lnEdit' onclick='EditEntry(" + item.id + ")'>Edit</a> <a href='#' Title='Delete' id='lnDelete' onclick='DeleteEntry(" + item.id + ")'>Delete</a></td>"
+                    $("#tbody").append(strdata);
+                });
+                
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+</script>
+

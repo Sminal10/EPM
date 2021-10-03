@@ -30,6 +30,18 @@ namespace EPM.DB
                     modelGetEmp.Fname = reader["FName"].ToString();
                     modelGetEmp.Mname = reader["MName"].ToString();
                     modelGetEmp.Lname = reader["LName"].ToString();
+                    modelGetEmp.Bdate = reader["BDate"].ToString();
+                    modelGetEmp.Gender = reader["Gender"].ToString();
+                    modelGetEmp.MaritalStatus = reader["MarritalStatus"].ToString();
+                    modelGetEmp.Mobilenum = reader["MobileNmber"].ToString();
+                    modelGetEmp.Altnum = reader["AlternateNmber"].ToString();
+                    modelGetEmp.Address = reader["Address"].ToString();
+                    modelGetEmp.State = reader["State"].ToString();
+                    modelGetEmp.City = reader["City"].ToString();
+                    modelGetEmp.Pincode = reader["Pincode"].ToString();
+                    modelGetEmp.Salary = reader["Salary"].ToString();
+                    modelGetEmp.Startdate = reader["StartDate"].ToString();
+                    modelGetEmp.Qualification = reader["Qualifications"].ToString();
                     emps.Add(modelGetEmp);
                 }
                 con.Close();

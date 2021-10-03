@@ -72,6 +72,12 @@ namespace EPM.Controllers
             return View();
         }
 
+        // Getting all Employee
+        public ActionResult GetAllEmployee()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AdminLogout()
         {
