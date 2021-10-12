@@ -48,5 +48,47 @@ namespace EPM.DB
                 return emps.ToArray();
             }
         }
+
+        public string Post(ModelAddNewEmp addNewEmp, string ConnectionString)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                SqlCommand command = new SqlCommand("uspMEmployeeAE", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Id", 0);
+                command.Parameters.AddWithValue("@Fname", addNewEmp.Fname.ToString());
+                command.Parameters.AddWithValue("@Mname", addNewEmp.Mname.ToString());
+                command.Parameters.AddWithValue("@Lname", addNewEmp.Lname.ToString());
+                command.Parameters.AddWithValue("@Bdate", addNewEmp.Bdate.ToString());
+                command.Parameters.AddWithValue("@Gender", addNewEmp.Gender.ToString());
+                command.Parameters.AddWithValue("@Marritalstatus", addNewEmp.MaritalStatus.ToString());
+                command.Parameters.AddWithValue("@Mobilenumber", addNewEmp.Mobilenum.ToString());
+                command.Parameters.AddWithValue("@Alternatenumber", addNewEmp.Altnum.ToString());
+                command.Parameters.AddWithValue("@Address", addNewEmp.Address.ToString());
+                command.Parameters.AddWithValue("@State", addNewEmp.State.ToString());
+                command.Parameters.AddWithValue("@City", addNewEmp.City.ToString());
+                command.Parameters.AddWithValue("@Pincode", addNewEmp.Pincode.ToString());
+                command.Parameters.AddWithValue("@Salary", addNewEmp.Salary.ToString());
+                command.Parameters.AddWithValue("@Startdate", addNewEmp.Startdate.ToString());
+                command.Parameters.AddWithValue("@Qualification", addNewEmp.Qualification.ToString());
+                command.Parameters.AddWithValue("@Emailid", addNewEmp.Emailid.ToString());
+                command.Parameters.AddWithValue("@Emppassword", addNewEmp.Password.ToString());
+                command.Parameters.AddWithValue("@Type", "A");
+                command.Parameters.Add("@Returnmessage", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+                command.ExecuteNonQuery();
+
+                string result = command.Parameters["@Returnmessage"].Value.ToString();
+                connection.Close();
+                return result;
+
+            }
+        }
     }
 }

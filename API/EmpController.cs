@@ -15,6 +15,7 @@ namespace EPM.API
     [ApiController]
     public class EmpController : ControllerBase
     {
+        // For Getting Employee
         DB.GetEmployee data = new DB.GetEmployee();
 
         private readonly IOptions<ModelConnectionString> appsetting;
@@ -38,10 +39,12 @@ namespace EPM.API
             return "value";
         }
 
-        // POST api/<EmpController>
+        // POST api/Emp/
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ActionName("SaveEmployee")]
+        public string Post(ModelAddNewEmp addNewEmp)
         {
+            return data.Post(addNewEmp, appsetting.Value.DefaultConnection);
         }
 
         // PUT api/<EmpController>/5

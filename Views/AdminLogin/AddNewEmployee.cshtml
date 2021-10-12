@@ -178,7 +178,7 @@
         </div>
     </div>
     <div class="row text-center">
-        <input type="button" value="Register" class="btn btn-primary" id="btnSubmit"/>
+        <input type="button" value="Register" class="btn btn-primary" id="btnSubmit" />
         <input type="button" value="Cancel"  class="btn btn-danger" id="btnReset"/>
     </div>
 </div>
@@ -500,6 +500,18 @@
             });
         }
 
+        if (isValid == false) {
+            event.preventDefault();
+        }
+        else {
+            if ($("#btnSubmit").val() == "Register") {
+                SaveData();
+            }
+            else {
+                window.location.reload();
+            }
+        }
+
         /*console.log(fname.val());
         console.log(mname.val());
         console.log(lname.val());
@@ -517,7 +529,77 @@
         console.log(qlf.val());
         console.log(email.val());
         console.log(pwd.val());*/
+
+
+        
     }
 
+
+    function SaveData() {
+
+            var NewEntry = {
+                fname: $("#txtFname").val(),
+                mname: $("#txtMname").val(),
+                lname: $("#txtLname").val(),
+                bdate: $("#txtDob").val(),
+                gender: $("#ddlgndr").val(),
+                maritalStatus: $("#ddlMS").val(),
+                mobilenum: $("#txtPhonenum").val(),
+                altnum: $("#txtAltnum").val(),
+                address: $("#txtAdd").val(),
+                state: $("#ddlState").val(),
+                city: $("#txtCity").val(),
+                pincode: $("#txtPincode").val(),
+                salary: $("#txtSalary").val(),
+                startdate: $("#txtDoj").val(),
+                qualification: $("#ddlQf").val(),
+                emailid: $("#txtEmailid").val(),
+                password: $("#txtPass").val()
+            }
+
+            //For saving
+            var ajaxRequest = $({
+                url: '/api/Emp/',
+                type: 'POST',
+                data: JSON.stringify(NewEntry),
+                contentType: 'application/json',
+                success: function (data) {
+                    alert(data);
+                    ClearData();
+                    DestroyRegisteredList();
+                },
+                error: function (jqXHR, textStatus, err) {
+                    alert(err);
+                }
+            });
+    }
+
+        function ClearData() {
+                ("#txtFname").val(''),
+                ("#txtMname").val(''),
+                ("#txtLname").val(''),
+                ("#txtDob").val(''),
+                $("#ddlgndr").val(0),
+                $("#ddlMS").val(0),
+                $("#txtPhonenum").val(''),
+                $("#txtAltnum").val(''),
+                $("#txtAdd").val(''),
+                $("#ddlState").val(0),
+                $("#txtCity").val(''),
+                $("#txtPincode").val(''),
+                $("#txtSalary").val(''),
+                $("#txtDoj").val(''),
+                $("#ddlQf").val(0),
+                $("#txtEmailid").val(''),
+                $("#txtPass").val('')
+        }
+
+        function DestroyRegisteredList() {
+            if (typeof tblregister != 'undefined') {
+
+                tblregister.destroy();
+                
+            } 
+        }
 </script>
 
