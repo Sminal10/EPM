@@ -38,7 +38,7 @@ namespace EPM.API
         {
             return "value";
         }
-
+        // This is just for testing
         // POST api/Emp/     
         [HttpPost]
         [ActionName("SaveEmployee")]
