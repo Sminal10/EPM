@@ -4,6 +4,28 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2 class="text-center">Welcome <uppercase>@TempData["username"]</uppercase></h2>
+<p class="text-center hidden" id="hdnValn">@TempData["username"]</p>
 
+<!-- Welcome Message -->
+<div id="hdnVal"></div>
 <h4 class="text-center">Final Admin Dashboard</h4>
+
+
+
+
+
+
+<script>
+
+    let val = document.getElementById("hdnValn").innerText;
+
+    sessionStorage.setItem("username", val);
+
+    //let c = String(@TempData["username"]);
+
+    document.getElementById("hdnVal").innerHTML = "<h2 class='text-center'>Welcome " + val + "</h2>";
+
+    let sessionval = sessionStorage.getItem("username");
+
+
+</script>

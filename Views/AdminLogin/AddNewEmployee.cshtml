@@ -195,8 +195,8 @@
 
     // Submit
     $("#btnSubmit").click(function () {
-        ValidateForm();
-
+         ValidateForm();
+        
 
     })
 
@@ -469,7 +469,7 @@
         }
 
         // Email
-        if ($.trim((email).val()) == 0 || $.trim((email).val()) == null) {
+        if ($.trim((email).val()) == "" || $.trim((email).val()) == null) {
             isValid = false;
             $(email).css({
                 "border": "1px solid red",
@@ -485,7 +485,7 @@
         }
 
         // Password
-        if ($.trim((pwd).val()) == 0 || $.trim((pwd).val()) == null) {
+        if ($.trim((pwd).val()) == "" || $.trim((pwd).val()) == null) {
             isValid = false;
             $(pwd).css({
                 "border": "1px solid red",
@@ -566,7 +566,7 @@
                 success: function (data) {
                     alert(data);
                     ClearData();
-                    DestroyRegisteredList();
+                    //DestroyRegisteredList();
                 },
                 error: function (jqXHR, textStatus, err) {
                     alert(err);
