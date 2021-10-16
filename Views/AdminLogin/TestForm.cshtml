@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewData["Title"] = "AddNewEmployee";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "TestForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
     .row {
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
 </style>
 
@@ -18,19 +18,19 @@
         @* First Name *@
         <div class="col-md-4">
             <label for="txtFname" id="lblFname"><i class="fa fa-user"></i>  First Name</label>
-            <input type="text" class="form-control" placeholder="Enter First Name" id="txtFname"/>
+            <input type="text" class="form-control" placeholder="Enter First Name" id="txtFname" />
         </div>
 
         @* Middle Name *@
         <div class="col-md-4">
             <label for="txtMname" id="lblMname"><i class="fa fa-user"></i> Middle Name</label>
-            <input type="text" class="form-control" placeholder="Enter Middle Name" id="txtMname"/>
+            <input type="text" class="form-control" placeholder="Enter Middle Name" id="txtMname" />
         </div>
 
         @* Last Name *@
         <div class="col-md-4">
             <label for="txtLname" id="lblLname"> <i class="fa fa-user"></i> Last Name</label>
-            <input type="text" class="form-control" placeholder="Enter Last Name" id="txtLname"/>
+            <input type="text" class="form-control" placeholder="Enter Last Name" id="txtLname" />
         </div>
     </div>
     <div class="row">
@@ -65,13 +65,13 @@
         @* Phone Number *@
         <div class="col-md-4">
             <label for="txtPhonenum" id="lblPhonenum">Primary Phone Number</label>
-            <input type="text" class="form-control" name="txtPhonenum" id="txtPhonenum" maxlength="10" placeholder="1234567890"/>
+            <input type="text" class="form-control" name="txtPhonenum" id="txtPhonenum" maxlength="10" placeholder="1234567890" />
         </div>
 
         @* Alternate Number *@
         <div class="col-md-4">
             <label for="txtAltnum" id="lblmobile">Alternate Phone Number</label>
-            <input type="text" class="form-control" name="txtAltnum" id="txtAltnum" maxlength="10" placeholder="1234567890"/>
+            <input type="text" class="form-control" name="txtAltnum" id="txtAltnum" maxlength="10" placeholder="1234567890" />
         </div>
 
         @* Address Box *@
@@ -132,10 +132,10 @@
         </div>
 
         @* Pincode *@
-         <div class="col-md-4">
-             <label for="txtPincode" id="lblPincode">Pincode</label>
-             <input type="text" class="form-control" name="txtPincode" id="txtPincode" maxlength="10" placeholder="1234"/>
-         </div>
+        <div class="col-md-4">
+            <label for="txtPincode" id="lblPincode">Pincode</label>
+            <input type="text" class="form-control" name="txtPincode" id="txtPincode" maxlength="10" placeholder="1234" />
+        </div>
     </div>
     <div class="row">
         @* Salary *@
@@ -179,7 +179,7 @@
     </div>
     <div class="row text-center">
         <input type="button" value="Register" class="btn btn-primary" id="btnSubmit" />
-        <input type="button" value="Cancel"  class="btn btn-danger" id="btnReset"/>
+        <input type="button" value="Cancel" class="btn btn-danger" id="btnReset" />
     </div>
 </div>
 
@@ -196,11 +196,11 @@
     // Submit
     $("#btnSubmit").click(function () {
          ValidateForm();
-        
+
 
     })
 
-    // Reset 
+    // Reset
     $("#btnReset").click(function () {
         window.location.reload();
     })
@@ -493,7 +493,7 @@
             });
         }
         else {
-            isValid = true;
+             isValid = true;
             $(pwd).css({
                 "border": "",
                 "background": ""
@@ -502,9 +502,11 @@
 
         if (isValid == false) {
             event.preventDefault();
+            console.log("Inside prevent default 0");
         }
         else {
             if ($("#btnSubmit").val() == "Register") {
+                console.log("Now going inside SaveData() 1")
                 SaveData();
             }
             else {
@@ -512,26 +514,26 @@
             }
         }
 
-        /*console.log(fname.val());
-        console.log(mname.val());
-        console.log(lname.val());
-        console.log(dob.val());
-        console.log(gender.val());
-        console.log(maritalstatus.val());
-        console.log(phnum.val());
-        console.log(altphnum.val());
-        console.log(addr.val());
-        console.log(state.val());
-        console.log(city.val());
-        console.log(pincode.val());
-        console.log(salary.val());
-        console.log(doj.val());
-        console.log(qlf.val());
-        console.log(email.val());
-        console.log(pwd.val());*/
+        //console.log(fname.val());
+        //console.log(mname.val());
+        //console.log(lname.val());
+        //console.log(dob.val());
+        //console.log(gender.val());
+        //console.log(maritalstatus.val());
+        //console.log(phnum.val());
+        //console.log(altphnum.val());
+        //console.log(addr.val());
+        //console.log(state.val());
+        //console.log(city.val());
+        //console.log(pincode.val());
+        //console.log(salary.val());
+        //console.log(doj.val());
+        //console.log(qlf.val());
+        //console.log(email.val());
+        //console.log(pwd.val());
 
 
-        
+
     }
 
     function DestroyRegisteredList() {
@@ -544,7 +546,7 @@
 
 
     function SaveData() {
-
+        console.log("Before New Entry 2");
             var NewEntry = {
                 fname: $("#txtFname").val(),
                 mname: $("#txtMname").val(),
@@ -564,6 +566,9 @@
                 emailid: $("#txtEmailid").val(),
                 password: $("#txtPass").val()
             }
+        console.log("After Entry 3");
+
+        console.log("Before Ajax Request 4");
 
             //For saving
             var ajaxRequest = $({
@@ -575,13 +580,16 @@
                     alert(data);
                     ClearData();
                     DestroyRegisteredList();
+                    console.log("API worked 5");
                 },
                 error: function (jqXHR, textStatus, err) {
                     alert(err);
                 }
             });
-    }
 
+        console.log("API Exiting 6");
+    }
+    // This is clear data
         function ClearData() {
                 ("#txtFname").val(''),
                 ("#txtMname").val(''),
@@ -604,4 +612,6 @@
 
 
 </script>
+
+
 

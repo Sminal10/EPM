@@ -41,7 +41,7 @@ namespace EPM.Controllers
             if (reader.Read())
             {
                 HttpContext.Session.SetString("username", adlc.AdminUserName.ToString());
-                TempData["username"] = adlc.AdminUserName;
+                TempData["username"] = adlc.AdminUserName.ToString();
 
                 return RedirectToAction("AdminDashboard");
             }
@@ -93,6 +93,11 @@ namespace EPM.Controllers
 
         [ActionName("RedirectAdminLogout")]
         public ActionResult RedirectAdminLogout()
+        {
+            return View();
+        }
+
+        public ActionResult TestForm()
         {
             return View();
         }

@@ -38,8 +38,8 @@ namespace EPM.API
         {
             return "value";
         }
-
-        // POST api/Emp/
+        // This is just for testing
+        // POST api/Emp/     
         [HttpPost]
         [ActionName("SaveEmployee")]
         public string Post(ModelAddNewEmp addNewEmp)
