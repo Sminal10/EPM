@@ -26,18 +26,18 @@ namespace EPM.API
 
         // GET: api/Emp
         [HttpGet]
-        [ActionName("GetAllEmp")]
         public IEnumerable<ModelGetEmp> GetEmp()
         {
             return data.GetEmp(appsetting.Value.DefaultConnection);
         }
 
-        // GET api/<EmpController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        // GET api/Emp/GetSingleEmp
+        //[HttpGet]
+        //[ActionName("GetSingleEmp")]
+        //public IEnumerable<ModelGetSingleEmp> GetSingleEmp(int id)
+        //{
+        //    return data.GetSingleEmp(id);
+        //}
         // This is just for testing
         // POST api/Emp/     
         [HttpPost]

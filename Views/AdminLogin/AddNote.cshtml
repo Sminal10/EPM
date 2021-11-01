@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "AddNote";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    #dvInpNotes{
+        margin-top:30px;
+    }
+</style>
+
+
+<div id="Heading">
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i> Add Notes</h1>
+</div>
+
+
+
+<div class="row">
+    @* First Name *@
+    <div class="col-md-10" id="dvInpNotes">
+        <input type="text" class="form-control" placeholder="Enter Notes" id="txtFname" />
+    </div>
+    <div class="col-md-2" id="dvInpNotes">
+        <input type="button" value="Note" class="btn btn-primary" id="btnSubmit" />
+    </div>
+</div>
+
+<div class="row" id="getNotes">
+
+</div>
+

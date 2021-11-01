@@ -10,6 +10,8 @@ namespace EPM.DB
 {
     public class GetEmployee
     {
+
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
         public IEnumerable<ModelGetEmp> GetEmp(string ConnectionString)
         {
             using(SqlConnection con = new SqlConnection(ConnectionString))
@@ -89,6 +91,33 @@ namespace EPM.DB
                 return result;
 
             }
+        }
+
+        public IEnumerable<ModelGetSingleEmp> GetSingleEmp(int id)
+        {
+                if(con.State == ConnectionState.Closed) {con.Open();}
+                
+                List<ModelGetSingleEmp> oneemp = new List<ModelGetSingleEmp>();
+                SqlCommand command = new SqlCommand("uspMEmployeeSD", con);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Type", SqlDbType.Char).Value = "GI";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ModelGetSingleEmp singleEmp = new ModelGetSingleEmp();
+                    singleEmp.EmpId = reader["EmpId"].ToString();
+                    singleEmp.Fname = reader["FName"].ToString();
+                    singleEmp.Mname = reader["MName"].ToString();
+                    singleEmp.Lname = reader["LName"].ToString();
+                    singleEmp.Bdate = reader["BDate"].ToString();
+                    singleEmp.Gender = reader["Gender"].ToString();
+                    singleEmp.Mobilenum = reader["MobileNmber"].ToString();
+                    oneemp.Add(singleEmp);
+                }
+                con.Close();
+                return oneemp.ToArray();
+            
         }
     }
 }
