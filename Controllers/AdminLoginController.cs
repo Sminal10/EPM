@@ -78,7 +78,14 @@ namespace EPM.Controllers
             return View();
         }
 
+        // For Admin Adding his personal notes
         public ActionResult AddNote()
+        {
+            return View();
+        }
+
+        // For creating an Announcements
+        public ActionResult CreateAnnouncement()
         {
             return View();
         }
