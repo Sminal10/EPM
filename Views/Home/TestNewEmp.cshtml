@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewData["Title"] = "AddNewEmployee";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "TestNewEmp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>TestNewEmp</h2>
 <style>
     .row {
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
 </style>
 
@@ -18,19 +19,19 @@
         @* First Name *@
         <div class="col-md-4">
             <label for="txtFname" id="lblFname"><i class="fa fa-user"></i>  First Name</label>
-            <input type="text" class="form-control" placeholder="Enter First Name" id="txtFname"/>
+            <input type="text" class="form-control" placeholder="Enter First Name" id="txtFname" />
         </div>
 
         @* Middle Name *@
         <div class="col-md-4">
             <label for="txtMname" id="lblMname"><i class="fa fa-user"></i> Middle Name</label>
-            <input type="text" class="form-control" placeholder="Enter Middle Name" id="txtMname"/>
+            <input type="text" class="form-control" placeholder="Enter Middle Name" id="txtMname" />
         </div>
 
         @* Last Name *@
         <div class="col-md-4">
             <label for="txtLname" id="lblLname"> <i class="fa fa-user"></i> Last Name</label>
-            <input type="text" class="form-control" placeholder="Enter Last Name" id="txtLname"/>
+            <input type="text" class="form-control" placeholder="Enter Last Name" id="txtLname" />
         </div>
     </div>
     <div class="row">
@@ -65,13 +66,13 @@
         @* Phone Number *@
         <div class="col-md-4">
             <label for="txtPhonenum" id="lblPhonenum">Primary Phone Number</label>
-            <input type="text" class="form-control" name="txtPhonenum" id="txtPhonenum" maxlength="10" placeholder="1234567890"/>
+            <input type="text" class="form-control" name="txtPhonenum" id="txtPhonenum" maxlength="10" placeholder="1234567890" />
         </div>
 
         @* Alternate Number *@
         <div class="col-md-4">
             <label for="txtAltnum" id="lblmobile">Alternate Phone Number</label>
-            <input type="text" class="form-control" name="txtAltnum" id="txtAltnum" maxlength="10" placeholder="1234567890"/>
+            <input type="text" class="form-control" name="txtAltnum" id="txtAltnum" maxlength="10" placeholder="1234567890" />
         </div>
 
         @* Address Box *@
@@ -132,10 +133,10 @@
         </div>
 
         @* Pincode *@
-         <div class="col-md-4">
-             <label for="txtPincode" id="lblPincode">Pincode</label>
-             <input type="text" class="form-control" name="txtPincode" id="txtPincode" maxlength="10" placeholder="1234"/>
-         </div>
+        <div class="col-md-4">
+            <label for="txtPincode" id="lblPincode">Pincode</label>
+            <input type="text" class="form-control" name="txtPincode" id="txtPincode" maxlength="10" placeholder="1234" />
+        </div>
     </div>
     <div class="row">
         @* Salary *@
@@ -178,28 +179,12 @@
         </div>
     </div>
     <div class="row text-center">
-        <input type="button" value="Register" class="btn btn-primary" id="btnSubmit" onclick="return ValidateForm()"/>
-        <input type="button" value="Cancel"  class="btn btn-danger" id="btnReset"/>
+        <input type="button" value="Register" class="btn btn-primary" id="btnSubmit" />
+        <input type="button" value="Cancel" class="btn btn-danger" id="btnReset" />
     </div>
 </div>
 
 <script>
-
-    //$("#txtFname").val("Aditya");
-    //$("#txtMname").val("S");
-    //$("#txtLname").val("Patel");
-    //$("#ddlgndr").val("male");
-    //$("#ddlMS").val("no");
-    //$("#txtPhonenum").val("9619998216");
-    //$("#txtAltnum").val("9619998216");
-    //$("#txtAdd").val("Miraroad(East),Maharashtra,India");
-    //$("#ddlState").val("Maharashtra");
-    //$("#txtCity").val("Mumbai");
-    //$("#ddlQf").val("PostGradutaion");
-    //$("#txtPincode").val("401107");
-    //$("#txtSalary").val("10000000");
-    //$("#txtEmailid").val("adityapatel9619@gmail.com");
-    //$("#txtPass").val("Admin@123");
     $(".col-md-4").addClass("text-center");
     $(".col-md-4").css({
         fontSize: 15
@@ -210,14 +195,16 @@
     });
 
     // Submit
-    //$("#btnSubmit").click(function () {
-    //    ValidateForm();
-    //});
+    $("#btnSubmit").click(function () {
+         ValidateForm();
 
-    // Reset 
+
+    })
+
+    // Reset
     $("#btnReset").click(function () {
         window.location.reload();
-    });
+    })
 
     // Validates Employee Registration Form
     function ValidateForm() {
@@ -232,6 +219,7 @@
         var phnum = $("#txtPhonenum");
         var altphnum = $("#txtAltnum");
         var addr = $("#txtAdd");
+        var state = $("#ddlState");
         var state = $("#ddlState");
         var city = $("#txtCity");
         var pincode = $("#txtPincode");
@@ -548,7 +536,7 @@
         console.log(dob.val());
 
 
-        
+
     }
 
     function DestroyRegisteredList() {
@@ -562,67 +550,32 @@
 
     function SaveData() {
         console.log("2");
-            var Register = {
-                fname: $("#txtfname").val(),
-                mname: $("#txtmname").val(),
-                lname: $("#txtlname").val(),
-                bdate: $("#txtdob").val(),
+            var NewEntry = {
+                fname: $("#txtFname").val(),
+                mname: $("#txtMname").val(),
+                lname: $("#txtLname").val(),
+                bdate: $("#txtDob").val(),
                 gender: $("#ddlgndr").val(),
-                maritalstatus: $("#ddlms").val(),
-                mobilenum: $("#txtphonenum").val(),
-                altnum: $("#txtaltnum").val(),
-                address: $("#txtadd").val(),
-                state: $("#ddlstate").val(),
-                city: $("#txtcity").val(),
-                pincode: $("#txtpincode").val(),
-                salary: $("#txtsalary").val(),
-                startdate: $("#txtdoj").val(),
-                qualification: $("#ddlqf").val(),
-                emailid: $("#txtemailid").val(),
-                password: $("#txtpass").val()
+                maritalStatus: $("#ddlMS").val(),
+                mobilenum: $("#txtPhonenum").val(),
+                altnum: $("#txtAltnum").val(),
+                address: $("#txtAdd").val(),
+                state: $("#ddlState").val(),
+                city: $("#txtCity").val(),
+                pincode: $("#txtPincode").val(),
+                salary: $("#txtSalary").val(),
+                startdate: $("#txtDoj").val(),
+                qualification: $("#ddlQf").val(),
+                emailid: $("#txtEmailid").val(),
+                password: $("#txtPass").val()
             }
-                //fname: "Rishi",
-                //mname: "J",
-                //lname: "Simba",
-                //bdate: "1999-07-10",
-                //gender: "male",
-                //maritalStatus: "no",
-                //mobilenum: "9619998216",
-                //altnum: "9833440134",
-                //address: "Prabhadevi,Mumbai,India",
-                //state: "Maharashtra",
-                //city: "Muumbai",
-                //pincode: "400102",
-                //salary: "12000000",
-                //startdate: "2021-01-01",
-                //qualification: "Graduation",
-                //emailid: "rishi@gmail.com",
-                //password: "rishol"
-            
                 console.log("3");
-        //Checking JSON Value
-        //console.log(Register.fname);
-        //console.log(Register.mname);
-        //console.log(Register.lname);
-        //console.log(Register.bdate);
-        //console.log(Register.gender);
-        //console.log(Register.maritalStatus);
-        //console.log(Register.mobilenum);
-        //console.log(Register.address);
-        //console.log(Register.state);
-        //console.log(Register.city);
-        //console.log(Register.pincode);
-        //console.log(Register.salary);
-        //console.log(Register.startdate);
-        //console.log(Register.qualification);
-        //console.log(Register.emailid);
-        //console.log(Register.password);
-        //console.log(typeof (Register));
+
             //For saving
-            var ajaxRequest = $.ajax({
+            var ajaxRequest = $({
                 url: '/api/Emp/SaveEmp',
                 type: 'POST',
-                data: JSON.stringify(Register),
+                data: JSON.stringify(NewEntry),
                 contentType: 'application/json',
                 success: function (data) {
                     console.log("4");
@@ -640,23 +593,23 @@
     }
 
         function ClearData() {
-                $("#txtFname").val('');
-                $("#txtMname").val('');
-                $("#txtLname").val('');
-                $("#txtDob").val('');
-                $("#ddlgndr").val(0);
-                $("#ddlMS").val(0);
-                $("#txtPhonenum").val('');
-                $("#txtAltnum").val('');
-                $("#txtAdd").val('');
-                $("#ddlState").val(0);
-                $("#txtCity").val('');
-                $("#txtPincode").val('');
-                $("#txtSalary").val('');
-                $("#txtDoj").val('');
-                $("#ddlQf").val(0);
-                $("#txtEmailid").val('');
-                $("#txtPass").val('');
+                ("#txtFname").val(''),
+                ("#txtMname").val(''),
+                ("#txtLname").val(''),
+                ("#txtDob").val(''),
+                $("#ddlgndr").val(0),
+                $("#ddlMS").val(0),
+                $("#txtPhonenum").val(''),
+                $("#txtAltnum").val(''),
+                $("#txtAdd").val(''),
+                $("#ddlState").val(0),
+                $("#txtCity").val(''),
+                $("#txtPincode").val(''),
+                $("#txtSalary").val(''),
+                $("#txtDoj").val(''),
+                $("#ddlQf").val(0),
+                $("#txtEmailid").val(''),
+                $("#txtPass").val('')
         }
 
 

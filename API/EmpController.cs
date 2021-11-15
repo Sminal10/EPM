@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace EPM.API
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
     public class EmpController : ControllerBase
     {
@@ -24,8 +24,9 @@ namespace EPM.API
             appsetting = app;
         }
 
-        // GET: api/Emp
         [HttpGet]
+        [ActionName("GetAllEmp")]
+        // GET: api/Emp/GetAllEmp
         public IEnumerable<ModelGetEmp> GetEmp()
         {
             return data.GetEmp(appsetting.Value.DefaultConnection);
@@ -39,9 +40,9 @@ namespace EPM.API
         //    return data.GetSingleEmp(id);
         //}
         // This is just for testing
-        // POST api/Emp/     
         [HttpPost]
-        [ActionName("SaveEmployee")]
+        [ActionName("SaveEmp")]
+        // POST api/Emp/SaveEmp     
         public string Post(ModelAddNewEmp addNewEmp)
         {
             return data.Post(addNewEmp, appsetting.Value.DefaultConnection);

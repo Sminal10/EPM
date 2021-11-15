@@ -24,5 +24,7 @@ namespace EPM.Models
         public string Salary { get; set; }
         public string Startdate { get; set; }
         public string Qualification { get; set; }
+        public string Emailid { get; set; }
+        public string Password { get; set; }
     }
 }
