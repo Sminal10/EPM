@@ -625,15 +625,14 @@
                 data: JSON.stringify(Register),
                 contentType: "application/json",
                 success: function (data) {
-                    //console.log("4");
+                    
                     alert(data);
                     ClearData();
                     //DestroyRegisteredList();
-                   // console.log("5");
                 },
                 error: function (jqXHR, textStatus, err) {
                     alert(err);
-                   // console.log("6");
+                   
                 }
             });
       //  console.log("7");
