@@ -5,13 +5,19 @@ using System.Threading.Tasks;
 using EPM.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
+using System.Configuration;
+using System.IO;
+using System.Globalization;
+using System.Text;
+
 
 namespace EPM.DB
 {
     public class GetEmployee
     {
 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=LAPTOP-ORT7DDTM;Initial Catalog=EPM;Integrated Security=True");
         public IEnumerable<ModelGetEmp> GetEmp(string ConnectionString)
         {
             using(SqlConnection con = new SqlConnection(ConnectionString))
@@ -52,44 +58,75 @@ namespace EPM.DB
         }
 
         // For Post
-        public string Post(ModelAddNewEmp addNewEmp, string ConnectionString)
+        //public string Post(ModelAddNewEmp addNewEmp, string ConnectionString)
+        //{
+        //    //using (SqlConnection connection = new SqlConnection(ConnectionString))
+        //    //{
+        //        if (con.State == ConnectionState.Closed)
+        //    {
+        //        con.Open();
+        //    }
+
+        //    SqlCommand command = new SqlCommand("uspMEmployeeAE", con);
+        //        command.CommandType = CommandType.StoredProcedure;
+        //        command.Parameters.AddWithValue("@Id", 0);
+        //        command.Parameters.AddWithValue("@Fname", addNewEmp.Fname.ToString());
+        //        command.Parameters.AddWithValue("@Mname",addNewEmp.Mname.ToString());
+        //        command.Parameters.AddWithValue("@Lname",addNewEmp.Lname.ToString());
+        //        command.Parameters.AddWithValue("@Bdate",addNewEmp.Bdate.ToString());
+        //        command.Parameters.AddWithValue("@Gender",addNewEmp.Gender.ToString());
+        //        command.Parameters.AddWithValue("@Marritalstatus",addNewEmp.MaritalStatus.ToString());
+        //        command.Parameters.AddWithValue("@Mobilenumber",addNewEmp.Mobilenum.ToString());
+        //        command.Parameters.AddWithValue("@Alternatenumber",addNewEmp.Altnum.ToString());
+        //        command.Parameters.AddWithValue("@Address",addNewEmp.Address.ToString());
+        //        command.Parameters.AddWithValue("@State",addNewEmp.State.ToString());
+        //        command.Parameters.AddWithValue("@City",addNewEmp.City.ToString());
+        //        command.Parameters.AddWithValue("@Pincode",addNewEmp.Pincode.ToString());
+        //        command.Parameters.AddWithValue("@Salary",addNewEmp.Salary.ToString());
+        //        command.Parameters.AddWithValue("@Startdate",addNewEmp.Startdate.ToString());
+        //        command.Parameters.AddWithValue("@Qualification",addNewEmp.Qualification.ToString());
+        //        command.Parameters.AddWithValue("@Emailid",addNewEmp.Emailid.ToString());
+        //        command.Parameters.AddWithValue("@Emppassword", addNewEmp.Password.ToString());
+        //        command.Parameters.AddWithValue("@Type","A");
+        //        
+        //        command.ExecuteNonQuery();
+
+        //        string result = command.Parameters["@Returnmessage"].Value.ToString();
+        //        con.Close();
+        //        return result;
+        //    //}
+        //}
+
+        public string Post(ModelAddNewEmp stud)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                connection.Open();
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
+            if (con.State == ConnectionState.Closed) { con.Open(); }
+            SqlCommand cmd = new SqlCommand("uspMEmployeeAE", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = 0;
+            cmd.Parameters.Add("@Fname", SqlDbType.VarChar).Value = stud.Fname.ToString();
+            cmd.Parameters.Add("@Mname", SqlDbType.VarChar).Value = stud.Mname.ToString();
+            cmd.Parameters.Add("@Lname", SqlDbType.VarChar).Value = stud.Lname.ToString();
+            cmd.Parameters.Add("@Bdate", SqlDbType.VarChar).Value = stud.Bdate.ToString();
+            cmd.Parameters.Add("@Gender", SqlDbType.VarChar).Value = stud.Gender.ToString();
+            cmd.Parameters.Add("@Marritalstatus", SqlDbType.VarChar).Value = stud.MaritalStatus.ToString();
+            cmd.Parameters.Add("@Mobilenumber", SqlDbType.VarChar).Value = stud.Mobilenum.ToString();
+            cmd.Parameters.Add("@Alternatenumber", SqlDbType.VarChar).Value = stud.Altnum.ToString();
+            cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = stud.Address.ToString();
+            cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = stud.State.ToString();
+            cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = stud.City.ToString();
+            cmd.Parameters.Add("@Pincode", SqlDbType.VarChar).Value = stud.Pincode.ToString();
+            cmd.Parameters.Add("@Salary", SqlDbType.VarChar).Value = stud.Salary.ToString();
+            cmd.Parameters.Add("@Startdate", SqlDbType.VarChar).Value = stud.Startdate.ToString();
+            cmd.Parameters.Add("@Qualification", SqlDbType.VarChar).Value = stud.Qualification.ToString();
+            cmd.Parameters.Add("@Emailid", SqlDbType.VarChar).Value = stud.Emailid.ToString();
+            cmd.Parameters.Add("@Emppassword", SqlDbType.VarChar).Value = stud.Password.ToString();
+            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = "A";
+            cmd.Parameters.Add("@Returnmessage", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            string result = cmd.Parameters["@Returnmessage"].Value.ToString();
+            con.Close();
+            return result;
 
-                SqlCommand command = new SqlCommand("uspMEmployeeAE", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", 0);
-                command.Parameters.AddWithValue("@Fname", addNewEmp.Fname.ToString());
-                command.Parameters.AddWithValue("@Mname",addNewEmp.Mname.ToString());
-                command.Parameters.AddWithValue("@Lname",addNewEmp.Lname.ToString());
-                command.Parameters.AddWithValue("@Bdate",addNewEmp.Bdate.ToString());
-                command.Parameters.AddWithValue("@Gender",addNewEmp.Gender.ToString());
-                command.Parameters.AddWithValue("@Marritalstatus",addNewEmp.MaritalStatus.ToString());
-                command.Parameters.AddWithValue("@Mobilenumber",addNewEmp.Mobilenum.ToString());
-                command.Parameters.AddWithValue("@Alternatenumber",addNewEmp.Altnum.ToString());
-                command.Parameters.AddWithValue("@Address",addNewEmp.Address.ToString());
-                command.Parameters.AddWithValue("@State",addNewEmp.State.ToString());
-                command.Parameters.AddWithValue("@City",addNewEmp.City.ToString());
-                command.Parameters.AddWithValue("@Pincode",addNewEmp.Pincode.ToString());
-                command.Parameters.AddWithValue("@Salary",addNewEmp.Salary.ToString());
-                command.Parameters.AddWithValue("@Startdate",addNewEmp.Startdate.ToString());
-                command.Parameters.AddWithValue("@Qualification",addNewEmp.Qualification.ToString());
-                command.Parameters.AddWithValue("@Emailid",addNewEmp.Emailid.ToString());
-                command.Parameters.AddWithValue("@Emppassword", addNewEmp.Password.ToString());
-                command.Parameters.AddWithValue("@Type","A");
-                command.Parameters.Add("@Returnmessage", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-                command.ExecuteNonQuery();
-
-                string result = command.Parameters["@Returnmessage"].Value.ToString();
-                connection.Close();
-                return result;
-            }
         }
 
         public IEnumerable<ModelGetSingleEmp> GetSingleEmp(int id)

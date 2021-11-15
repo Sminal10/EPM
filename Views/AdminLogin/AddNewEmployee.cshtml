@@ -561,25 +561,25 @@
 
 
     function SaveData() {
-        console.log("2");
+        //console.log("2");
             var Register = {
-                fname: $("#txtfname").val(),
-                mname: $("#txtmname").val(),
-                lname: $("#txtlname").val(),
-                bdate: $("#txtdob").val(),
-                gender: $("#ddlgndr").val(),
-                maritalstatus: $("#ddlms").val(),
-                mobilenum: $("#txtphonenum").val(),
-                altnum: $("#txtaltnum").val(),
-                address: $("#txtadd").val(),
-                state: $("#ddlstate").val(),
-                city: $("#txtcity").val(),
-                pincode: $("#txtpincode").val(),
-                salary: $("#txtsalary").val(),
-                startdate: $("#txtdoj").val(),
-                qualification: $("#ddlqf").val(),
-                emailid: $("#txtemailid").val(),
-                password: $("#txtpass").val()
+                Fname: $("#txtFname").val(),
+                Mname: $("#txtMname").val(),
+                Lname: $("#txtLname").val(),
+                Bdate: $("#txtDob").val(),
+                Gender: $("#ddlgndr").val(),
+                MaritalStatus: $("#ddlMS").val(),
+                Mobilenum: $("#txtPhonenum").val(),
+                Altnum: $("#txtAltnum").val(),
+                Address: $("#txtAdd").val(),
+                State: $("#ddlState").val(),
+                City: $("#txtCity").val(),
+                Pincode: $("#txtPincode").val(),
+                Salary: $("#txtSalary").val(),
+                Startdate: $("#txtDoj").val(),
+                Qualification: $("#ddlQf").val(),
+                Emailid: $("#txtEmailid").val(),
+                Password: $("#txtPass").val()
             }
                 //fname: "Rishi",
                 //mname: "J",
@@ -599,7 +599,7 @@
                 //emailid: "rishi@gmail.com",
                 //password: "rishol"
             
-                console.log("3");
+                //console.log("3");
         //Checking JSON Value
         //console.log(Register.fname);
         //console.log(Register.mname);
@@ -623,20 +623,20 @@
                 url: '/api/Emp/SaveEmp',
                 type: 'POST',
                 data: JSON.stringify(Register),
-                contentType: 'application/json',
+                contentType: "application/json",
                 success: function (data) {
-                    console.log("4");
+                    //console.log("4");
                     alert(data);
                     ClearData();
                     //DestroyRegisteredList();
-                    console.log("5");
+                   // console.log("5");
                 },
                 error: function (jqXHR, textStatus, err) {
                     alert(err);
-                    console.log("6");
+                   // console.log("6");
                 }
             });
-        console.log("7");
+      //  console.log("7");
     }
 
         function ClearData() {
