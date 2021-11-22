@@ -155,5 +155,21 @@ namespace EPM.DB
                 return oneemp.ToArray();
             
         }
+
+
+        public string Put(int id, ModelAddNewEmp stud)
+        {
+            if (con.State == ConnectionState.Closed) { con.Open(); }
+            SqlCommand cmd = new SqlCommand("", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = "";
+            cmd.Parameters.Add("@Returnmessage", SqlDbType.NVarChar, 400).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            string result = cmd.Parameters["@Returnmessage"].Value.ToString();
+            con.Close();
+
+            return result;
+        }
     }
 }

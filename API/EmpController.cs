@@ -27,7 +27,7 @@ namespace EPM.API
     public class EmpController : ControllerBase
     {
         // For Getting Employee
-        DB.GetEmployee data = new DB.GetEmployee();
+      
         DB.GetEmployee datatest = new DB.GetEmployee();
         private readonly IOptions<ModelConnectionString> appsetting;
         public EmpController(IOptions<ModelConnectionString> app)
@@ -40,7 +40,7 @@ namespace EPM.API
         // GET: api/Emp/GetAllEmp
         public IEnumerable<ModelGetEmp> GetEmp()
         {
-            return data.GetEmp(appsetting.Value.DefaultConnection);
+            return datatest.GetEmp(appsetting.Value.DefaultConnection);
         }
 
         // GET api/Emp/GetSingleEmp
@@ -67,9 +67,16 @@ namespace EPM.API
 
 
         // PUT api/<EmpController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+
+        //}
+
+        public String Put(int id, ModelAddNewEmp stud)
         {
+            var putMethod = datatest.Put(id, stud);
+            return putMethod;
         }
 
         // DELETE api/<EmpController>/5
