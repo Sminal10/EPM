@@ -526,29 +526,7 @@
             else {
                 window.location.reload();
             }
-        }
-
-        /*console.log(fname.val());
-        console.log(mname.val());
-        console.log(lname.val());
-        console.log(dob.val());
-        console.log(gender.val());
-        console.log(maritalstatus.val());
-        console.log(phnum.val());
-        console.log(altphnum.val());
-        console.log(addr.val());
-        console.log(state.val());
-        console.log(city.val());
-        console.log(pincode.val());
-        console.log(salary.val());
-        console.log(doj.val());
-        console.log(qlf.val());
-        console.log(email.val());
-        console.log(pwd.val());*/
-        console.log(dob.val());
-
-
-        
+        }        
     }
 
     function DestroyRegisteredList() {
@@ -561,7 +539,6 @@
 
 
     function SaveData() {
-        //console.log("2");
             var Register = {
                 Fname: $("#txtFname").val(),
                 Mname: $("#txtMname").val(),
@@ -581,61 +558,22 @@
                 Emailid: $("#txtEmailid").val(),
                 Password: $("#txtPass").val()
             }
-                //fname: "Rishi",
-                //mname: "J",
-                //lname: "Simba",
-                //bdate: "1999-07-10",
-                //gender: "male",
-                //maritalStatus: "no",
-                //mobilenum: "9619998216",
-                //altnum: "9833440134",
-                //address: "Prabhadevi,Mumbai,India",
-                //state: "Maharashtra",
-                //city: "Muumbai",
-                //pincode: "400102",
-                //salary: "12000000",
-                //startdate: "2021-01-01",
-                //qualification: "Graduation",
-                //emailid: "rishi@gmail.com",
-                //password: "rishol"
-            
-                //console.log("3");
-        //Checking JSON Value
-        //console.log(Register.fname);
-        //console.log(Register.mname);
-        //console.log(Register.lname);
-        //console.log(Register.bdate);
-        //console.log(Register.gender);
-        //console.log(Register.maritalStatus);
-        //console.log(Register.mobilenum);
-        //console.log(Register.address);
-        //console.log(Register.state);
-        //console.log(Register.city);
-        //console.log(Register.pincode);
-        //console.log(Register.salary);
-        //console.log(Register.startdate);
-        //console.log(Register.qualification);
-        //console.log(Register.emailid);
-        //console.log(Register.password);
-        //console.log(typeof (Register));
+
             //For saving
             var ajaxRequest = $.ajax({
                 url: '/api/Emp/SaveEmp',
                 type: 'POST',
                 data: JSON.stringify(Register),
                 contentType: "application/json",
-                success: function (data) {
-                    
+                success: function (data) { 
                     alert(data);
                     ClearData();
                     //DestroyRegisteredList();
                 },
                 error: function (jqXHR, textStatus, err) {
-                    alert(err);
-                   
+                    alert(err);                   
                 }
             });
-      //  console.log("7");
     }
 
         function ClearData() {

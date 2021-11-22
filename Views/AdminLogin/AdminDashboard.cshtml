@@ -9,7 +9,7 @@
 <!-- Welcome Message -->
 <div id="hdnVal"></div>
 <h4 class="text-center">Final Admin Dashboard</h4>
-
+<h2 class="text-center" id="txtWlcm"></h2>
 
 
 
@@ -20,12 +20,11 @@
     let val = document.getElementById("hdnValn").innerText;
 
     sessionStorage.setItem("username", val);
+    var username = sessionStorage.getItem("username");
+    console.log(username);
+    document.getElementById("txtWlcm").innerHTML = "Welcome " + username;
 
-    //let c = String(@TempData["username"]);
-
-    document.getElementById("hdnVal").innerHTML = "<h2 class='text-center'>Welcome " + val + "</h2>";
-
-    let sessionval = sessionStorage.getItem("username");
+    //let sessionval = sessionStorage.getItem("username");
 
 
 </script>
