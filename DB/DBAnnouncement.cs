@@ -16,7 +16,7 @@ namespace EPM.DB
 {
     public class DBAnnouncement
     {
-        SqlConnection con = new SqlConnection("workstation id=epmdbmini.mssql.somee.com;packet size=4096;user id=adityapatel9833_SQLLogin_1;pwd=bwtbffp7k8;data source=epmdbmini.mssql.somee.com;persist security info=False;initial catalog=epmdbmini");
+        SqlConnection con = new SqlConnection("Data Source=epmdbmini.mssql.somee.com;Initial Catalog=epmdbmini;User ID=adityapatel9833_SQLLogin_1;Password=bwtbffp7k8");
 
         public string PostNote(ModelAnnouncement stud)
         {
