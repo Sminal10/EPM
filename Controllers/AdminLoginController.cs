@@ -23,7 +23,7 @@ namespace EPM.Controllers
         [HttpPost]
         public ActionResult AdminLoginIndex(AdminLoginClass adlc)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
+            SqlConnection sqlConnection = new SqlConnection("workstation id=epmdbmini.mssql.somee.com;packet size=4096;user id=adityapatel9833_SQLLogin_1;pwd=bwtbffp7k8;data source=epmdbmini.mssql.somee.com;persist security info=False;initial catalog=epmdbmini");
 
             string sqlquery = "SELECT AdminUsername,AdminPassword FROM [dbo].[MAdmin] WHERE AdminUsername = @AdminUsername AND AdminPassword = @AdminPassword";
 
