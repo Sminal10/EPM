@@ -23,7 +23,7 @@ namespace EPM.Controllers
         [HttpPost]
         public ActionResult AdminLoginIndex(AdminLoginClass adlc)
         {
-            SqlConnection sqlConnection = new SqlConnection("Data Source=epmdbmini.mssql.somee.com;Initial Catalog=epmdbmini;User ID=adityapatel9833_SQLLogin_1;Password=bwtbffp7k8");
+            SqlConnection sqlConnection = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
 
             string sqlquery = "SELECT AdminUsername,AdminPassword FROM [dbo].[MAdmin] WHERE AdminUsername = @AdminUsername AND AdminPassword = @AdminPassword";
 
@@ -77,7 +77,11 @@ namespace EPM.Controllers
         {
             return View();
         }
-
+        //Upload Employee Documents
+        public ActionResult UploadEmpDoc()
+        {
+            return View();
+        }
         // For Admin Adding his personal notes
         public ActionResult AddNote()
         {

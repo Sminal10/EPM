@@ -16,7 +16,7 @@ namespace EPM.DB
 {
     public class DBAnnouncement
     {
-        SqlConnection con = new SqlConnection("Data Source=epmdbmini.mssql.somee.com;Initial Catalog=epmdbmini;User ID=adityapatel9833_SQLLogin_1;Password=bwtbffp7k8");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
 
         public string PostNote(ModelAnnouncement stud)
         {

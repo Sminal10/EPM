@@ -17,7 +17,7 @@ namespace EPM.DB
     public class GetEmployee
     {
 
-        SqlConnection con = new SqlConnection("Data Source=epmdbmini.mssql.somee.com;Initial Catalog=epmdbmini;User ID=adityapatel9833_SQLLogin_1;Password=bwtbffp7k8");
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
         public IEnumerable<ModelGetEmp> GetEmp(string ConnectionString)
         {
             using(SqlConnection con = new SqlConnection(ConnectionString))
