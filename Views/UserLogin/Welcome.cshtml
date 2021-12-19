@@ -1,13 +1,116 @@
 ﻿
 @{
     ViewData["Title"] = "Welcome";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutEmp.cshtml";
 }
-
+<p class="text-center hidden" id="hdnValn">@TempData["username"]</p>
 <h1>Welcome <uppercase>@TempData["username"]</uppercase></h1>
 
-@using(Html.BeginForm("Logout","UserLogin", FormMethod.Post))
-{ 
-<a href="~/UserLogin/RedirectLogout">Logout</a>
-}
+<div id="showDetails">
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-4">
+            <p class="h3">First Name: </p>
+        </div>
+        <div class="col-md-4">
+            <p class="h3">Last Name: </p>
+        </div>
+        <div class="col-md-4">
+            <p class="h3">Middle Name: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">Mobile Number: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">Alternate Nummber: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">Addres: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">State: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">City: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">Pincode: </p>
+        </div>
+    </div>
+</div>
 
+<script>
+    let val = document.getElementById("hdnValn").innerText;
+
+    sessionStorage.setItem("username", val);
+    console.log(val);
+    $(document).ready(function () {
+        ShowEmp();
+    })
+
+    function ShowEmp() {
+        $("#showDetails").html('');
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/GetEmp/GetSingleEmp?username='+ val,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-4" >' +
+                                         '<p class="h3">First Name: ' + item.fName + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-4">' +
+                                        '<p class="h3">Middle Name:' + item.mName + ' </p>' +
+                                    '</div>' +
+                                    '<div class="col-md-4">' +
+                                        '<p class="h3">Last Name:' + item.lName + ' </p>' +
+                                    '</div>' +
+                               '</div>' +
+                                '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                        '<p class="h3">Mobile Number: ' + item.mnum + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">Alternate Number:' + item.altnum + ' </p>' +
+                                    '</div>' +
+                                '</div>'+
+                        '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                        '<p class="h3">Address: ' + item.add + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">State:' + item.state + ' </p>' +
+                                    '</div>' +
+                                '</div>'+
+                        '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                        '<p class="h3">City: ' + item.city + '</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">Pincode:' + item.pincode + ' </p>' +
+                                    '</div>' +
+                                '</div>'
+                    $('#showDetails').append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+    function logout() {
+        document.getElementById("")
+    }
+
+</script>

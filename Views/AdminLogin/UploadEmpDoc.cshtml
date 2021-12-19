@@ -4,14 +4,62 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="col-md-4">
-    <label for="ddlGndr" id="lblGender">Select Employee</label>
-    <select class="form-control" id="ddlempdetail">
-        <option selected value="0">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="others">Others</option>
-    </select>
+<h1 style="margin-bottom:20px;" class="text-center font-weight-bold"><i class="fa fa-upload"></i> Upload Employee Document</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <label for="ddlGndr" id="lblGender">Select Employee</label>
+        <select class="form-control" id="ddlempdetail">
+            <option selected value="0">Select Gender</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <br />
+        <input type="button" value="Register" class="btn btn-primary" id="btnAdd" />
+    </div>
+</div>
+<div id="dvDocD">
+    <div class="row" style="margin-top: 30px;">
+        @* Image Path *@
+        <div class="col-md-4">
+            <label for="upImage" id="lblImage"><i class="fa fa-camera"></i>  Select Image</label>
+            <input type="file" class="form-control-file" accept="image/jpg,image/png,image/jpeg" id="upImage" />
+        </div>
+
+        @* Adhaar Card Number *@
+        <div class="col-md-4">
+            <label for="txtAdhnum" id="lblAdhnum"><i class="fa fa-id-card"></i>  Adhaar Card Number</label>
+            <input type="text" class="form-control" placeholder="XXXX-XXXX-XXXX" id="txtAdhnum" maxlength="12" />
+        </div>
+
+        @* Pan Card Number *@
+        <div class="col-md-4">
+            <label for="txtPannum" id="lblPannum"><i class="fa fa-id-card"></i>  Pan Card Number</label>
+            <input type="text" class="form-control" placeholder="ABC1234E" id="txtPannum" maxlength="7" />
+        </div>
+    </div>
+    <div class="row" style="margin-top: 30px">
+        @* Bank Account No *@
+        <div class="col-md-4">
+            <label for="txtBAccno" id="lblBAccno"><i class="fa fa-bank"></i>  Bank Account Number</label>
+            <input type="text" class="form-control" placeholder="BNK123BANK" id="txtBAccno" maxlength="50" />
+        </div>
+
+        @* Bank IFSC No *@
+        <div class="col-md-4">
+            <label for="txtBIfsc" id="lblBIfsc"><i class="fa fa-bank"></i>  Bank IFSC Code</label>
+            <input type="text" class="form-control" placeholder="BNK123CODE" id="txtBIfsc" maxlength="50" />
+        </div>
+
+        @* Bank Branch *@
+        <div class="col-md-4">
+            <label for="txtBBranch" id="lblBBranch"><i class="fa fa-bank"></i>  Bank Branch</label>
+            <input type="text" class="form-control" placeholder="MAHARASHTRA,INDIA" id="txtBBranch" maxlength="60" />
+        </div>
+    </div>
+    <div class="row text-center" style="margin-top: 30px">
+        <input type="button" value="Update" class="btn btn-success" id="btnSubmit" onclick="return uploadDoc()" />
+    </div>
 </div>
 
 
@@ -20,10 +68,29 @@
     $(document).ready(function () {
         //alert("Hello Aditya");
         GetEmpDetails();
+        $("#dvDocD").css({
+            "display":"none"
+        })
+
+        $("#btnAdd").click(function () {
+            $("#dvDocD").css({
+                "display": "block"
+            })
+        })
+
+        $("#btnAdd").click(function () {
+            UpdateData();
+        })
     })
 
+    var name = sessionStorage.getItem("username");
+
+    function UpdateData() {
+        console.log($("#ddlempdetail").val());
+    }
+
     function GetEmpDetails() {
-        $("#ddlempdetail").html('');
+        //$("#ddlempdetail").html('');
         var strdata = '';
         jQuery.support.cors = true;
         $.ajax({
@@ -34,14 +101,172 @@
                 var sr = 0;
                 $.each(data, function (key, item) {
                     sr += 1;
-                    strdata = '<option selected value="0">Select Gender</option>' +
-                        '<option value = "' + item.empid + '" > ' + item.fname + " " + item.mname + " " + item.lname + '</option >'
+                    strdata = '<option value = "' + item.empid + '" > ' + item.fname + " " + item.mname + " " + item.lname + '</option >'
                     $("#ddlempdetail").append(strdata);
-                }); 
+                });
             },
             error: function (jqXHR, textStatus, err) {
                 alert(err);
             }
         })
+    }
+    //'<option selected value="0">Select Gender</option>' +
+    function uploadDoc() {
+        var isvalid = true;
+
+        var imagepath =$("#upImage");
+        var adhnum = $("#txtAdhnum");
+        var pannum = $("#txtPannum");
+        var bnknum = $("#txtBAccno");
+        var bnkifsc = $("#txtBIfsc");
+        var bnkbrn = $("#txtBBranch");
+
+        //Image Path
+        if ($.trim((imagepath).val()) == "" || $.trim((imagepath).val()) == null) {
+            isvalid = false;
+            $(imagepath).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(imagepath).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        //Adhaar Card
+        if ($.trim((adhnum).val()) == "" || $.trim((adhnum).val()) == null) {
+            isvalid = false;
+            $(adhnum).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(adhnum).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        //Pan Card
+        if ($.trim((pannum).val()) == "" || $.trim((pannum).val()) == null) {
+            isvalid = false;
+            $(pannum).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(pannum).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        //Bank Number
+        if ($.trim((bnknum).val()) == "" || $.trim((bnknum).val()) == null) {
+            isvalid = false;
+            $(bnknum).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(bnknum).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        //Bank IFSC
+        if ($.trim((bnkifsc).val()) == "" || $.trim((bnkifsc).val()) == null) {
+            isvalid = false;
+            $(bnkifsc).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(bnkifsc).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        //Bank Number
+        if ($.trim((bnkbrn).val()) == "" || $.trim((bnkbrn).val()) == null) {
+            isvalid = false;
+            $(bnkbrn).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(bnkbrn).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        if (isvalid == false) {
+            event.preventDefault();
+            console.log("Prevent Default");
+        }
+        else {
+            if ($("#btnSubmit").val() == "Update") {
+                AddData();
+            }
+        }
+    }
+
+    function AddData() {
+        var Doc = {
+            imagepath: $("#upImage").val(),
+            adc: $("#txtAdhnum").val(),
+            pan: $("#txtPannum").val(),
+            bacc: $("#txtBAccno").val(),
+            bifc: $("#txtBIfsc").val(),
+            bbr: $("#txtBBranch").val(),
+            empid: $("#ddlempdetail").val()
+        }
+            //imagepath: "Z:/A_MCA_Corner/Semester_3/img.jpeg;",
+            //adc: "123456",
+            //pan: "78901453",
+            //bacc: "4857901474997411478",
+            //bifc: "BANKBRCT",
+            //bbr: "INDIA",
+            //empid: "adityap"
+       
+        var ajaxRequest = $.ajax({
+            url: '/api/APIUploadDoc/UploadData',
+            type: 'POST',
+            data: JSON.stringify(Doc),
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data);
+                ClearData();
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        });
+    }
+
+    function ClearData() {
+        $("#upImage").val('');
+       $("#txtAdhnum").val('');
+       $("#txtPannum").val('');
+       $("#txtBAccno").val('');
+        $("#txtBIfsc").val('');
+        $("#txtBBranch").val('');
     }
 </script>
