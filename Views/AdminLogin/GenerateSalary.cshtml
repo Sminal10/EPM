@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "GenerateSalary";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div id="Heading">
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i>Generate Salary</h1>
+</div>
+
+<div id="dvFindSalarySlip" style="margin-top:30px;">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="ddlemp1" id="lblemo">Select Employee</label>
+            <select class="form-control" id="ddlemp">
+                <option selected value="0">Select Employee</option>
+                <option value="name1">Payal Pawar</option>
+                <option value="name2">Sminal Patil</option>
+                <option value="name3">Aditya Patel</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="ddlmonth" id="lblmonth">Select Month</label>
+            <select class="form-control" id="ddlemp">
+                <option selected value="0">Select Details</option>
+                <option value="sal1">April 2021</option>
+                <option value="sal2">May 2021</option>
+                <option value="sal3">June 2021</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="txtsalary" id="lblsalary">Enter Salary</label>
+            <input type="text" class="form-control" placeholder="Enter your Salary" id="txtsalary" />
+        </div>
+    </div>
+  
+    <div class="row text-center">
+        <div class="col-md-12">
+            <input id="btnsalary" type="button" value="Generate Salary" />
+        </div>
+    </div>
+</div>
+

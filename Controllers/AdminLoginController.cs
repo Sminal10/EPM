@@ -122,5 +122,10 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public ActionResult GenerateSalary()
+        {
+            return View();
+        }
     }
 }
