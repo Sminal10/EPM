@@ -38,5 +38,9 @@ namespace EPM.Controllers
         {
             return View();
         }
+        public IActionResult logout()
+        {
+            return View();
+        }
     }
 }
