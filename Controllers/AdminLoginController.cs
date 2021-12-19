@@ -118,5 +118,9 @@ namespace EPM.Controllers
             return View();
         }
 
+        public ActionResult FindEmpSS()
+        {
+            return View();
+        }
     }
 }
