@@ -13,5 +13,9 @@ namespace EPM.Controllers
             return View();
         }
 
+        public IActionResult RecordAttendance()
+        {
+            return View();
+        }
     }
 }
