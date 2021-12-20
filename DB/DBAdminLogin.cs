@@ -59,7 +59,8 @@ namespace EPM.DB
                     ModelAdminDetail detail = new ModelAdminDetail();
                     detail.Fname = reader["FName"].ToString();
                     detail.Mname = reader["MName"].ToString();
-                    detail.Gender = reader["LName"].ToString();
+                    detail.Lname = reader["LName"].ToString();
+                    detail.Gender = reader["Gender"].ToString();
                     detail.MNumber = reader["MobileNmber"].ToString();
                     detail.AltNumber = reader["AlternateNmber"].ToString();
                     adminDetails.Add(detail);
