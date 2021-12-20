@@ -99,5 +99,38 @@ namespace EPM.DB
                 return result;
             }
         }
+
+        //Get SalarY FOr EMP
+        public IEnumerable<ModelShowSS> GetEmpSS(string username, string ConnectionString)
+        {
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                List<ModelShowSS> adminDetails = new List<ModelShowSS>();
+                SqlCommand comd = new SqlCommand("uspGetSS", con);
+                comd.CommandType = CommandType.StoredProcedure;
+                comd.Parameters.AddWithValue("@username", username);
+                comd.Parameters.AddWithValue("@Type", "GSS");
+                SqlDataReader reader = comd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ModelShowSS detail = new ModelShowSS();
+                    detail.EmpId = reader["EmpId"].ToString();
+                    detail.FName = reader["FName"].ToString();
+                    detail.MName = reader["MName"].ToString();
+                    detail.LName = reader["LName"].ToString();
+                    detail.Salary = reader["Salary"].ToString();
+                    detail.SalDate = reader["SalDate"].ToString();
+
+                    adminDetails.Add(detail);
+                }
+                con.Close();
+                return adminDetails.ToArray();
+            }
+        }
     }
 }

@@ -86,6 +86,9 @@
             var c = $("#ddlempdetail").val();
             console.log(c);
             ShowData();
+
+            var cc = $("#ns");
+            console.log(cc);
         })
 
         $("#btnssalary").click(function () {
@@ -141,7 +144,7 @@
                                 '<td><b>Last Name:</b> '+item.lname+'</td>'+
                             '</tr>'+
                             '<tr>'+
-                                '<td><b>Salary:</b> '+item.salary+'</td>'+
+                                '<td id="ns"><b>Salary:</b> '+item.salary+'</td>'+
                                 '<td><b>Adhaar Card No:</b> '+item.adcnum+'</td>'+
                                 '<td><b>PanCard Number:</b> '+item.pannum+'</td>'+
                             '</tr>'+

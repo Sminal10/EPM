@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "GetSalaryInfo";
+    Layout = "~/Views/Shared/_LayoutEmp.cshtml";
+}
+
+<h2 class="text-center" style="margin-bottom:10px;"><i class="fa fa-table"></i> Your Salary Info</h2>
+<div id="showDetails" style="margin-top:30px">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">EmpId: </th>
+                <th scope="col">Name: </th>
+            </tr>
+            <tr>
+                <th scope="col">Salary </th>
+                <th scope="col">Salary Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>First Name:</b> </td>
+                <td><b>Middle Name:</b> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        ShowData();
+    })
+
+    function ShowData() {
+        let sessionval = sessionStorage.getItem("username");
+        $("#showDetails").html('');
+        var strdata = '';
+        var c = $("#ddlempdetail").val();
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/APIGetSS/ShowSS?username=' + sessionval,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<table class="table">'+
+                        '<thead>'+
+                            '<tr>'+
+                                '<th scope="col">EmpId: '+item.empId+'</th>'+
+                                '<th scope="col">Name: '+item.fName+' '+item.mName+' '+item.lName+'</th>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<th scope="col"><i>Salary: '+item.salary+'</i> </th>'+
+                                '<th scope="col"><i>Salary Date: '+item.salDate+'</i> </th>'+
+                            '</tr>'+
+                        '</thead>'+
+                        '</table>'
+                    $('#showDetails').append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+
+        })
+    }
+</script>

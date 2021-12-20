@@ -22,5 +22,10 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public IActionResult GetSalaryInfo()
+        {
+            return View();
+        }
     }
 }
