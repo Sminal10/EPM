@@ -3,6 +3,85 @@
     ViewData["Title"] = "ShowAnnc";
     Layout = "~/Views/Shared/_LayoutEmp.cshtml";
 }
+<h1 class="text-center font-weight-bolder">Details Of Announcement</h1>
+<p class="text-center hidden" id="hdnValn"></p>
 
-<h2>ShowAnnc</h2>
+<div id="showDetails">
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p class="h3">Event Name: </p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">Begin Date: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">End Date: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <p class="h3">Description: </p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+        
+</div>
+
+<script>
+    $(document).ready(function () {
+        ShowEmp();
+    })
+
+    function ShowEmp() {
+        $("#showDetails").html('');
+        id = $("#hdnValn").val();
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/AnnouncementAPI/GetAnnounce?Id='+id,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<div class="row" style="margin-left:80px;">' +
+                        '<div class="col-md-2" ></div>'+
+                        '<div class="col-md-8" >' +
+                        '<p class="h3">Event Name: ' + item.eventName + '</p>' +
+                        '</div>' +
+                        '<div class="col-md-2" ></div>'+
+                        '</div>' +
+                        '<div class="row" style="margin-left:80px;">' +
+                        '<div class="col-md-6" >' +
+                        '<p class="h3">Begin Date: ' + item.startDate + '</p>' +
+                        '</div>' +
+                        '<div class="col-md-6">' +
+                        '<p class="h3">End Date:' + item.endDate + ' </p>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="row" style="margin-left:80px;">' +
+                        '<div class="col-md-2" ></div>'+
+                        '<div class="col-md-8" >' +
+                        '<p class="h3">Description: ' + item.desc + '</p>' +
+                        '</div>' +
+                        '<div class="col-md-2" ></div>'+
+                        '</div>'
+                    $('#showDetails').append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+
+
+</script>
 
