@@ -89,7 +89,7 @@
         })
 
         $("#btnssalary").click(function () {
-            alert("Hi");
+            Savsal();
         })
     })
 
@@ -160,5 +160,27 @@
             }
 
         })
+    }
+
+    function Savsal() {
+        var id = $("#ddlempdetail").val();
+        var Sal = {
+            empid: id,
+            sal: "120000",
+            saldate: $("#txtDob").val()
+        }
+
+        var ajaxRequest = $.ajax({
+            url: '/api/APIGS/SaveSal',
+            type: 'POST',
+            data: JSON.stringify(Sal),
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data);
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        });
     }
 </script>

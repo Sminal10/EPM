@@ -23,11 +23,12 @@ namespace EPM.API
             appsetting = option;
         }
 
-        // GET: api/<APIGS>
+        // GET: api/APIGS/GetSvdS
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ActionName("GetSvdS")]
+        public IEnumerable<ModelSetSalary> GetSavS()
         {
-            return new string[] { "value1", "value2" };
+            return data.GetSavS(appsetting.Value.DefaultConnection);
         }
 
         // GET api/APIGS/GetSInf?username=EPMAD01
@@ -38,10 +39,12 @@ namespace EPM.API
             return data.GetGetInf(username, appsetting.Value.DefaultConnection);
         }
 
-        // POST api/<APIGS>
+        // POST api/APIGS/SaveSal
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ActionName("SaveSal")]
+        public string SaveSalary(ModelSetSalary ss)
         {
+            return data.SaveSalary(ss, appsetting.Value.DefaultConnection);
         }
 
         // PUT api/<APIGS>/5
