@@ -9,47 +9,8 @@
         margin-top:30px;
     }
 
-    /* Style the tab */
-    .tab {
-      
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #32c2cd;
-    }
-
-        /* Style the buttons inside the tab */
-        .tab button {
-            display:inline-block;
-            background-color: inherit;
-            color: black;
-            padding: 12px 14px;
-            width: 100%;
-            border: none;
-            outline: none;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 17px;  
-            
-        }
-
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-                background-color:cadetblue;
-            }
-
-            /* Create an active/current tablink class */
-            .tab button.active {
-                background-color: #32c2cd;
-            }
-
-    /* Style the tab content */
-    .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-
+    #row{
+        margin-top:10px;
     }
 </style>
 
@@ -58,374 +19,42 @@
     <h1 class="text-center font-weight-bolder"><i class="fa fa-microphone"></i> Announcements</h1>
 </div>
 
-<div style="padding-top:30px">
-    <div class="row">
 
-        <div class="tab">
-            <div class="col-md-6">
-                
-                <button class="tablinks"  id="btnnote" onclick="Announce(event, 'Note')" >Note</button>
-            </div>
-            <div class="col-md-6">
-                <button class="tablinks" id="btnaward" onclick="Announce(event, 'Award')" >Award</button>
-            </div>
 
-        </div>
-
-        <div id="Note" class="tabcontent">
-
-            <div class="row" style="padding-top: 9px">
-                @*  *@
-                <div class="col-md-12">
-                    <label for="txtEvent" id="lblEvent"> Event</label>
-                    <input type="text" class="form-control" placeholder="Enter the Event" id="txtEvent" required/>
-                </div>
-            </div>
-            <div class="row" style="padding-top: 9px">
-                @*  *@
-                <div class="col-md-6">
-                    <label for="txtStart" id="lblStart"> Start Date</label>
-                    <input type="date" class="form-control" id="txtSdate" />
-                </div>
-
-                <div class="col-md-6">
-                    <label for="txtEnd" id="lblEnd"> End Date</label>
-                    <input type="date" class="form-control" id="txtEdate" />
-                </div>
-            </div>
-            <div class="row" style="padding-top: 9px">
-                @*  *@
-                <div class="col-md-12">
-                    <label for="txtDesc" id="lblDesc"> Description</label>
-                    <textarea class="form-control" id="txtDesc" placeholder="Please Enter Ddescription Here"></textarea>
-
-                </div>
-            </div>
-            <div class="row text-center" style="padding-top:9px">
-                <input type="button" value="Save" class="btn btn-primary" id="btnSubmit" onclick="NoteValidation()" />
-                <input type="button" value="Cancel" class="btn btn-danger" id="btnReset" onclick="Cancel()" />
-            </div>
-        </div>
-
-        <div id="Award" class="tabcontent">
-            <div class="row" style="padding-top:9px">
-                @*  *@
-                <div class="col-md-12">
-                    <label for="txtAwrdeeName" id="lblAwrdeeName"> Name of Awardee</label>
-                    <input type="text" class="form-control" placeholder="Enter Full Name" id="txtAwrdeeName" />
-                </div>
-            </div>
-            <div class="row" style="padding-top:9px">
-                @*  *@
-                <div class="col-md-6">
-                    <label for="txtAwdName" id="lblAwdName"> Name of the Award</label>
-                    <input type="text" class="form-control" placeholder="Enter Award's Name" id="txtAwdName" />
-                </div>
-                <div class="col-md-6">
-                    <label for="txtOrgName" id="lblOrgName"> Organization Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Organization Name" id="txtOrgName" />
-                </div>
-            </div>
-            <div class="row" style="padding-top:9px">
-                @*  *@
-                <div class="col-md-6">
-                    <label for="txtAwardDate" id="lblAwardDate"> Awarded Date</label>
-                    <input type="date" class="form-control" id="txtAwardDate" />
-                </div>
-                <div class="col-md-6">
-                    <label for="attachment" id="lblattachment"> Image Related to Award</label>
-                    <input type="file" id="attachment" multiple>
-                </div>
-            </div>
-            <div class="row" style="padding-top:9px">
-                @*  *@
-                <div class="col-md-12">
-                    <label for="txtAwrdDesc" id="lblAwrdDesc"> Description About Award</label>
-                    <textarea class="form-control" id="txtAwrdDesc" placeholder="Please Type Ddescription Here"></textarea>
-                </div>
-            </div>
-            <div class="row text-center" style="padding-top:9px">
-                <input type="button" value="Submit" class="btn btn-primary" id="btnSave" onclick="AwardValidation()" />
-                <input type="button" value="Cancel" class="btn btn-danger" id="btnReset" onclick="Cancel()" />
-            </div>
-        </div>
-
+<div class="row">
+    @* First Name *@
+    <div class="col-md-10" id="dvInpNotes">
+        <input type="text" class="form-control" placeholder="Enter Notes" id="txtNote" />
     </div>
+    <div class="col-md-2" id="dvInpNotes">
+        <input type="button" value="addnote" class="btn btn-primary" id="btnSubmit" />
     </div>
+</div>
+<div id="row">
+    <div class="success" style="background-color: #ddffdd; border-left: 6px solid #04AA6D; ">
+        <p><strong>No Notes!!!!</strong></p>
+    </div>
+</div>
+
+
 <script>
+    $(document).ready(function () {
+        ShowNotes();
+    })
+    var name = sessionStorage.getItem("username");
+    //console.log(name);
 
-    $(".col-md-6").addClass("text-center");
-    $(".col-md-6").css({
-        fontSize: 15
-    });
-    $(".col-md-12").addClass("text-center");
-    $(".col-md-12").css({
-        fontSize: 15
-    });
+    $("#btnSubmit").click(function () {
+        saveNote();
+    })
 
-    function Cancel() {
-        window.location.reload();
-    }
-
-    function Announce(evt, ann) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(ann).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    function NoteValidation() {
-        var isValid = true;
-
-        var eve = $("#txtEvent");
-        var esdate = $("#txtSdate");
-        var eedate = $("#txtEdate");
-        var sdesc = $("#txtDesc");
-       
-      
-
-        // Event
-        if ($.trim((eve).val()) == "" || $.trim((eve).val()) == null) {
-            isValid = false;
-            $(eve).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(eve).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Event Start Date
-        if ($.trim((esdate).val()) == "" || $.trim((esdate).val()) == null) {
-            isValid = false;
-            $(esdate).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(esdate).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Event End Date
-        if ($.trim((eedate).val()) == "" || $.trim((eedate).val()) == null) {
-            isValid = false;
-            $(eedate).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(eedate).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Descripton
-        if ($.trim((sdesc).val()) == "" || $.trim((sdesc).val()) == null) {
-            isValid = false;
-            $(sdesc).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(sdesc).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        if (isValid == false) {
-            console.log("preventing default()");
-            event.preventDefault();
-           
-        }
-        else {
-            console.log("Before calling Save Function()");
-            if ($("#btnSubmit").val() == "Save") {
-                SaveNote();
-                console.log("Save Function Called (1)");
-            }
-            else {
-                window.location.reload();
-            }
-        }
-
-
-    }
-
-    function SaveNote() {
-       
-        var Note = {
-            Event: $("#txtEvent").val(),
-            EventStartDate: $("#txtSdate").val(),
-            EventEndDate: $("#txtEdate").val(),
-            EventDesc: $("#txtDesc").val()
-        }
-      
-        var ajaxRequest = $.ajax({
-            url: '/api/AnnouncementAPI/SaveNote',
-            type: 'POST',
-            data: JSON.stringify(Note),
-            contentType: "application/json",
-            success: function (data) {
-
-               // alert(data);
-               // ClearData();
-               
-            },
-            error: function (jqXHR, textStatus, err) {
-                alert(err);
-
-            }
-        });
-       
-    }
-
-    function AwardValidation() {
-        var isValid = true;
-
-        var awdeename = $("#txtAwrdeeName");
-        var awdname = $("#txtAwdName");
-        var org = $("#txtOrgName");
-        var adate = $("#txtAwardDate");
-     
-
-
-
-        // Name of Awardee
-        if ($.trim((awdeename).val()) == "" || $.trim((awdeename).val()) == null) {
-            isValid = false;
-            $(awdeename).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(awdeename).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Name of the Award
-        if ($.trim((awdname).val()) == "" || $.trim((awdname).val()) == null) {
-            isValid = false;
-            $(awdname).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(awdname).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Organization Name
-        if ($.trim((org).val()) == "" || $.trim((org).val()) == null) {
-            isValid = false;
-            $(org).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(org).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-        // Date
-        if ($.trim((adate).val()) == "" || $.trim((adate).val()) == null) {
-            isValid = false;
-            $(adate).css({
-                "border": "1px solid red",
-                "background": "#FFCECE"
-            });
-        }
-        else {
-            isValid = true;
-            $(adate).css({
-                "border": "",
-                "background": ""
-            });
-        }
-
-     
-        if (isValid == false) {
-            console.log("preventing default()");
-            event.preventDefault();
-
-        }
-        else {
-            console.log("Before calling Save Function()");
-            if ($("#btnSave").val() == "Submit") {
-                SaveAward();
-                console.log("Save Function Called (1)");
-            }
-            else {
-                window.location.reload();
-            }
-        }
-
-
-    }
-
-    function SaveAward() {
-
-        var Award = {
-            AwardeeName: $("#txtAwrdeeName").val(),
-            Award: $("#txtAwdName").val(),
-            Organization: $("#txtOrgName").val(),
-            AwardedDate: $("#txtAwardDate").val(),
-            Attachment: $("#attachment").val(),
-            AwardDesc: $("#txtAwrdDesc").val()
-
-        }
-
-        var ajaxRequest = $.ajax({
-            url: '/api/AnnouncementAPI/SaveAward',
-            type: 'POST',
-            data: JSON.stringify(Award),
-            contentType: "application/json",
-            success: function (data) {
-
-                // alert(data);
-                // ClearData();
-
-            },
-            error: function (jqXHR, textStatus, err) {
-                alert(err);
-
-            }
-        });
-
-    }
-
+    function saveNote() {
+        var isvalid = true;
 </script>
+
+<div class="row" id="getNotes">
+
+</div>
+
+   
+
