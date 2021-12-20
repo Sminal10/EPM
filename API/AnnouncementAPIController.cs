@@ -41,5 +41,14 @@ namespace EPM.API
             return postMethod;
         }
 
+        [HttpGet]
+        [ActionName("GetAnnounce")]
+        // GET: api/AnnouncementAPI/GetAnnounce
+        public IEnumerable<ModelShowAnnouncement> GetAnnouncement(int Id)
+        {
+            return datatest.GetAnnouncement(Id);
+        }
+
+
     }
 }

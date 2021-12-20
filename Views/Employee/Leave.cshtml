@@ -3,6 +3,64 @@
     ViewData["Title"] = "Leave";
     Layout = "~/Views/Shared/_LayoutEmp.cshtml";
 }
+<h1 class="text-center font-weight-bolder">Leave Application</h1>
+<div id="Leave">
 
-<h2>Leave</h2>
+    <div class="row" style="padding-top: 9px">
+        @*  *@
+        <div class="col-md-6">
+            <label for="txtfname" id="lblfname"> First Name</label>
+            <input type="text" class="form-control" placeholder="Enter the First Name" id="txtfname" required />
+        </div>
+        <div class="col-md-6">
+            <label for="txtlname" id="lbllname"> Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter the Last Name" id="txtlname" required />
+        </div>
+    </div>
+    <div class="row" style="padding-top: 9px">
+        @*  *@
+        <div class="col-md-6">
+            <label for="txtStart" id="lblStart"> Start Date</label>
+            <input type="date" class="form-control" id="txtSdate" />
+        </div>
 
+        <div class="col-md-6">
+            <label for="txtEnd" id="lblEnd"> End Date</label>
+            <input type="date" class="form-control" id="txtEdate" />
+        </div>
+    </div>
+    <div class="row" style="padding-top: 9px">
+        <div class="col-md-6">
+            <label for="ddlLeave" id="lblLeave"> Type of Leave</label>
+            <select class="form-control" id="ddlgndr">
+                <option selected value="0">Select Gender</option>
+                <option value="1">Annual Leave</option>
+                <option value="2">Unpaid Leave</option>
+                <option value="3">Marraige Leave</option>
+                <option value="4">Study Leave</option>
+                <option value="5">Other</option>
+            </select>
+
+        </div>
+        @*  *@
+        <div class="col-md-6">
+            <label for="txtDesc" id="lblDesc"> Description</label>
+            <textarea class="form-control" id="txtDesc" placeholder="Please Enter Ddescription Here"></textarea>
+
+        </div>
+    </div>
+    <div class="row text-center" style="padding-top:9px">
+        <input type="button" value="Save" class="btn btn-primary" id="btnSubmit" onclick="NoteValidation()" />
+        <input type="button" value="Cancel" class="btn btn-danger" id="btnReset" onclick="Cancel()" />
+    </div>
+</div>
+<script>
+
+    $(".col-md-6").addClass("text-center");
+    $(".col-md-6").css({
+        fontSize: 15
+    });
+  
+
+
+</script>
