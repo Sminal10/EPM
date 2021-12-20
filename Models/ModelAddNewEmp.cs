@@ -8,6 +8,7 @@ namespace EPM.Models
     public class ModelAddNewEmp
     {
         public string Id { get; set; }
+        public string Empid { get; set; }
         public string Fname { get; set; }
         public string Mname { get; set; }
         public string Lname { get; set; }

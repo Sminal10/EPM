@@ -17,7 +17,9 @@ namespace EPM.DB
     public class GetEmployee
     {
 
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
+        SqlConnection con = new SqlConnection("Data Source=LAPTOP-ORT7DDTM;Initial Catalog=EPM;Integrated Security=True");
+
+        //For GET
         public IEnumerable<ModelGetEmp> GetEmp(string ConnectionString)
         {
             using(SqlConnection con = new SqlConnection(ConnectionString))
@@ -56,6 +58,48 @@ namespace EPM.DB
                 return emps.ToArray();
             }
         }
+
+        public IEnumerable<ModelAddNewEmp> GetEmpUpdt(int Id)
+        {
+            if (con.State == ConnectionState.Closed) { con.Open(); }
+            List<ModelAddNewEmp> test = new List<ModelAddNewEmp>();
+            SqlCommand cmd = new SqlCommand("uspMEmployeeSD", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Id;
+            cmd.Parameters.Add("@Type", SqlDbType.NVarChar).Value = "E";
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ModelAddNewEmp lg = new ModelAddNewEmp();
+
+                lg.Id = dr["Id"].ToString();
+                lg.Empid =dr["EmpId"].ToString();
+                lg.Fname = dr["FName"].ToString();
+                lg.Mname = dr["MName"].ToString();
+                lg.Lname = dr["LName"].ToString();
+                lg.Bdate = dr["BDate"].ToString();
+                lg.Gender = dr["Gender"].ToString();
+                lg.MaritalStatus = dr["MarritalStatus"].ToString();
+                lg.Mobilenum = dr["MobileNmber"].ToString();
+                lg.Altnum = dr["AlternateNmber"].ToString();
+                lg.Address = dr["Address"].ToString();
+                lg.State = dr["State"].ToString();
+                lg.City = dr["City"].ToString();
+                lg.Pincode = dr["Pincode"].ToString();
+                lg.Salary = dr["Salary"].ToString();
+                lg.Startdate = dr["StartDate"].ToString();
+                lg.Qualification = dr["Qualifications"].ToString();
+                lg.Emailid = dr["Emailid"].ToString();
+                lg.Password = dr["EmpPassword"].ToString();
+
+                test.Add(lg);
+            }
+            con.Close();
+
+            return test.ToArray();
+        }
+
 
         // For Post
         //public string Post(ModelAddNewEmp addNewEmp, string ConnectionString)
@@ -129,47 +173,84 @@ namespace EPM.DB
 
         }
 
-        public IEnumerable<ModelGetSingleEmp> GetSingleEmp(int id)
-        {
-                if(con.State == ConnectionState.Closed) {con.Open();}
+        //public IEnumerable<ModelGetSingleEmp> GetSingleEmp(int id)
+        //{
+        //        if(con.State == ConnectionState.Closed) {con.Open();}
                 
-                List<ModelGetSingleEmp> oneemp = new List<ModelGetSingleEmp>();
-                SqlCommand command = new SqlCommand("uspMEmployeeSD", con);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("@Type", SqlDbType.Char).Value = "GI";
-                SqlDataReader reader = command.ExecuteReader();
+        //        List<ModelGetSingleEmp> oneemp = new List<ModelGetSingleEmp>();
+        //        SqlCommand command = new SqlCommand("uspMEmployeeSD", con);
+        //        command.CommandType = CommandType.StoredProcedure;
+        //        command.Parameters.Add("@Type", SqlDbType.Char).Value = "GI";
+        //        SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    ModelGetSingleEmp singleEmp = new ModelGetSingleEmp();
-                    singleEmp.EmpId = reader["EmpId"].ToString();
-                    singleEmp.Fname = reader["FName"].ToString();
-                    singleEmp.Mname = reader["MName"].ToString();
-                    singleEmp.Lname = reader["LName"].ToString();
-                    singleEmp.Bdate = reader["BDate"].ToString();
-                    singleEmp.Gender = reader["Gender"].ToString();
-                    singleEmp.Mobilenum = reader["MobileNmber"].ToString();
-                    oneemp.Add(singleEmp);
-                }
-                con.Close();
-                return oneemp.ToArray();
+        //        while (reader.Read())
+        //        {
+        //            ModelGetSingleEmp singleEmp = new ModelGetSingleEmp();
+        //            singleEmp.EmpId = reader["EmpId"].ToString();
+        //            singleEmp.Fname = reader["FName"].ToString();
+        //            singleEmp.Mname = reader["MName"].ToString();
+        //            singleEmp.Lname = reader["LName"].ToString();
+        //            singleEmp.Bdate = reader["BDate"].ToString();
+        //            singleEmp.Gender = reader["Gender"].ToString();
+        //            singleEmp.Mobilenum = reader["MobileNmber"].ToString();
+        //            oneemp.Add(singleEmp);
+        //        }
+        //        con.Close();
+        //        return oneemp.ToArray();
             
-        }
+        //}
 
 
         public string Put(int id, ModelAddNewEmp stud)
         {
             if (con.State == ConnectionState.Closed) { con.Open(); }
-            SqlCommand cmd = new SqlCommand("", con);
+            SqlCommand cmd = new SqlCommand("uspMEmployeeAE", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
-            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = "";
-            cmd.Parameters.Add("@Returnmessage", SqlDbType.NVarChar, 400).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("@Fname", SqlDbType.VarChar).Value = stud.Fname.ToString();
+            cmd.Parameters.Add("@Mname", SqlDbType.VarChar).Value = stud.Mname.ToString();
+            cmd.Parameters.Add("@Lname", SqlDbType.VarChar).Value = stud.Lname.ToString();
+            cmd.Parameters.Add("@Bdate", SqlDbType.VarChar).Value = stud.Bdate.ToString();
+            cmd.Parameters.Add("@Gender", SqlDbType.VarChar).Value = stud.Gender.ToString();
+            cmd.Parameters.Add("@Marritalstatus", SqlDbType.VarChar).Value = stud.MaritalStatus.ToString();
+            cmd.Parameters.Add("@Mobilenumber", SqlDbType.VarChar).Value = stud.Mobilenum.ToString();
+            cmd.Parameters.Add("@Alternatenumber", SqlDbType.VarChar).Value = stud.Altnum.ToString();
+            cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = stud.Address.ToString();
+            cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = stud.State.ToString();
+            cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = stud.City.ToString();
+            cmd.Parameters.Add("@Pincode", SqlDbType.VarChar).Value = stud.Pincode.ToString();
+            cmd.Parameters.Add("@Salary", SqlDbType.VarChar).Value = stud.Salary.ToString();
+            cmd.Parameters.Add("@Startdate", SqlDbType.VarChar).Value = stud.Startdate.ToString();
+            cmd.Parameters.Add("@Qualification", SqlDbType.VarChar).Value = stud.Qualification.ToString();
+            cmd.Parameters.Add("@Emailid", SqlDbType.VarChar).Value = stud.Emailid.ToString();
+            cmd.Parameters.Add("@Emppassword", SqlDbType.VarChar).Value = stud.Password.ToString();
+            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = "U";
+            cmd.Parameters.Add("@Returnmessage", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
             cmd.ExecuteNonQuery();
             string result = cmd.Parameters["@Returnmessage"].Value.ToString();
             con.Close();
 
             return result;
         }
+
+
+        public string Delete(int id)
+        {
+            List<ModelAddNewEmp> test = new List<ModelAddNewEmp>();
+            if (con.State == ConnectionState.Closed) { con.Open(); }
+            SqlCommand cmd = new SqlCommand("uspMEmployeeSD", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            //cmd.Parameters.Add("@DeletedBy", SqlDbType.Int).Value = deletedby;
+            cmd.Parameters.Add("@Type", SqlDbType.VarChar).Value = "D";
+            cmd.Parameters.Add("@Returnmessage", SqlDbType.NVarChar, 400).Direction = ParameterDirection.Output;
+            cmd.ExecuteNonQuery();
+            string result = cmd.Parameters["@Returnmessage"].Value.ToString();
+            con.Close();
+            return result;
+        }
+
+
+
     }
 }
