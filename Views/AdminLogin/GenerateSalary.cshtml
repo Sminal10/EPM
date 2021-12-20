@@ -11,41 +11,154 @@
 </style>
 
 <div id="Heading">
-    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i>Generate Salary</h1>
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-money"></i> Generate Salary</h1>
 </div>
 
 <div id="dvFindSalarySlip" style="margin-top:30px;">
     <div class="row">
         <div class="col-md-4">
-            <label for="ddlemp1" id="lblemo">Select Employee</label>
-            <select class="form-control" id="ddlemp">
+            <label for="ddlGndr" id="lblGender">Select Employee</label>
+            <select class="form-control" id="ddlempdetail">
                 <option selected value="0">Select Employee</option>
-                <option value="name1">Payal Pawar</option>
-                <option value="name2">Sminal Patil</option>
-                <option value="name3">Aditya Patel</option>
             </select>
         </div>
 
         <div class="col-md-4">
-            <label for="ddlmonth" id="lblmonth">Select Month</label>
-            <select class="form-control" id="ddlemp">
-                <option selected value="0">Select Details</option>
-                <option value="sal1">April 2021</option>
-                <option value="sal2">May 2021</option>
-                <option value="sal3">June 2021</option>
-            </select>
+            <label for="txtDob" id="lblDate"><i class="fa fa-calendar"></i> Date of Salary</label>
+            <input type="date" class="form-control" id="txtDob" placeholder="1999-07-10">
         </div>
 
-        <div class="col-md-4">
-            <label for="txtsalary" id="lblsalary">Enter Salary</label>
-            <input type="text" class="form-control" placeholder="Enter your Salary" id="txtsalary" />
+        <div class="col-md-4" style="margin-top:20px;">
+            <input id="btnsalary" type="button" value="Generate Salary" class="btn btn-success" />
         </div>
     </div>
   
-    <div class="row text-center">
-        <div class="col-md-12">
-            <input id="btnsalary" type="button" value="Generate Salary" />
-        </div>
-    </div>
 </div>
 
+<div id="showDetails">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">EmpId: </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>First Name:</b> </td>
+                <td><b>Middle Name:</b> </td>
+                <td><b>Last Name:</b> </td>
+            </tr>
+            <tr>
+                <td><b>Salary:</b> </td>
+                <td><b>Adhaard Card Number:</b> </td>
+                <td><b>PanCard Number:</b> </td>
+            </tr>
+            <tr>
+                <td><b>Bank Account No:</b> </td>
+                <td><b>Bank IFSC:</b> </td>
+                <td><b>Bank Branch:</b> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="sendsalary">
+    <div class="text-center" style="margin-top:20px;">
+        <input id="btnssalary" type="button" value="Send Salary" class="btn btn-success" />
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        GetEmpDetails();
+        $("#showDetails").css({
+            "display":"none"
+        })
+        $("#sendsalary").css({
+            "display": "none"
+        })
+        $("#btnsalary").click(function () {
+            $("#showDetails").css({
+                "display": "block"
+            })
+            $("#sendsalary").css({
+                "display": "block"
+            })
+            var c = $("#ddlempdetail").val();
+            console.log(c);
+            ShowData();
+        })
+
+        $("#btnssalary").click(function () {
+            alert("Hi");
+        })
+    })
+
+    function GetEmpDetails() {
+        //$("#ddlempdetail").html('');
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/APIDDLEmpName/GetEmpNames',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<option value = "' + item.empid + '" > ' + item.fname + " " + item.mname + " " + item.lname + '</option >'
+                    $("#ddlempdetail").append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+    function ShowData() {
+        $("#showDetails").html('');
+        var strdata = '';
+        var c = $("#ddlempdetail").val();
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/APIGS/GetSInf?username=' + c,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<table class="table">'+
+                        '<thead>'+
+                            '<tr>'+
+                                '<th scope="col">EmpId: '+item.empid+'</th>'+
+                            '</tr>'+
+                        '</thead>'+
+                        '<tbody>'+
+                            '<tr>'+
+                                '<td><b>First Name:</b> '+item.fname+'</td>'+
+                                '<td><b>Middle Name:</b> '+item.mname+'</td>'+
+                                '<td><b>Last Name:</b> '+item.lname+'</td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td><b>Salary:</b> '+item.salary+'</td>'+
+                                '<td><b>Adhaar Card No:</b> '+item.adcnum+'</td>'+
+                                '<td><b>PanCard Number:</b> '+item.pannum+'</td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td><b>Bank Account No:</b> '+item.bnkAcc+'</td>'+
+                                '<td><b>Bank IFSC:</b> '+item.bnkBr+'</td>'+
+                                '<td><b>Bank Branch:</b> '+item.bnkIfsc+'</td>'+
+                            '</tr>'+
+                        '</tbody>'+
+                        '</table>'
+                    $('#showDetails').append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+
+        })
+    }
+</script>
