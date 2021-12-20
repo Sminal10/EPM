@@ -127,5 +127,15 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public ActionResult AdAttendance()
+        {
+            return View();
+        }
+
+        public ActionResult AssignTeam()
+        {
+            return View();
+        }
     }
 }
