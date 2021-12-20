@@ -43,6 +43,14 @@ namespace EPM.API
             return datatest.GetEmp(appsetting.Value.DefaultConnection);
         }
 
+        [HttpGet]
+        [ActionName("GetEmpupdt")]
+        // GET: api/Emp/GetEmpupdt
+        public IEnumerable<ModelAddNewEmp> GetEmpUpdt(int Id)
+        {
+            return datatest.GetEmpUpdt(Id);
+        }
+
         // GET api/Emp/GetSingleEmp
         //[HttpGet]
         //[ActionName("GetSingleEmp")]
@@ -72,7 +80,8 @@ namespace EPM.API
         //{
 
         //}
-
+        [HttpPut]
+        [ActionName("update")]
         public String Put(int id, ModelAddNewEmp stud)
         {
             var putMethod = datatest.Put(id, stud);
@@ -80,9 +89,11 @@ namespace EPM.API
         }
 
         // DELETE api/<EmpController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [ActionName("Delete")]
+        public string Delete(int id)
         {
+            return datatest.Delete(id);
         }
     }
 }
