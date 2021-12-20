@@ -5,18 +5,18 @@
 }
 
 <style>
-    #dvInpNotes{
-        margin-top:30px;
+    #dvInpNotes {
+        margin-top: 30px;
     }
 
-    #row{
-        margin-top:10px;
+    #row {
+        margin-top: 10px;
     }
 </style>
 
 
 <div id="Heading">
-    <h1 class="text-center font-weight-bolder"><i class="fa fa-microphone"></i> Announcements</h1>
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i> Add Notes</h1>
 </div>
 
 
@@ -31,7 +31,7 @@
     </div>
 </div>
 <div id="row">
-    <div class="success" style="background-color: #ddffdd; border-left: 6px solid #04AA6D; ">
+    <div class="success" style="background-color: #ddffdd; border-left: 6px solid #04AA6D;">
         <p><strong>No Notes!!!!</strong></p>
     </div>
 </div>
@@ -50,11 +50,84 @@
 
     function saveNote() {
         var isvalid = true;
+
+        var txtNote = $("#txtNote");
+
+        if ($.trim((txtNote).val()) == "" || $.trim((txtNote).val()) == null) {
+            isvalid = false;
+            $(txtNote).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            isvalid = true;
+            $(txtNote).css({
+                "border": "",
+                "background": ""
+            });
+        }
+
+        if (isvalid == false) {
+            event.preventDefault();
+            console.log("Prevent Default");
+        }
+        else {
+            if ($("#btnSubmit").val() == "addnote") {
+                AddNote();
+            }
+        }
+    }
+
+    function AddNote() {
+        var Note = {
+            notes: $("#txtNote").val(),
+            adminUsername: name
+        }
+
+        console.log(Note.notes);
+        console.log(Note.adminUsername);
+
+        var ajaxRequest = $.ajax({
+            url: '/api/Adminnote/SaveNotes',
+            type: 'POST',
+            data: JSON.stringify(Note),
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data);
+                ClearData();
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        });
+    }
+
+    function ClearData() {
+        $("#txtNote").val('');
+    }
+
+    function ShowNotes() {
+        $('#row').html('');
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/Adminnote/GetSpecificNotes?username='+ name,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<div class="success" style="background-color: #ddffdd; border-left: 6px solid #04AA6D; ">' +
+                        '<p><strong>' + item.notes + '</strong></p>' +
+                        '</div>'
+                    $('#row').append(strdata);
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
 </script>
-
-<div class="row" id="getNotes">
-
-</div>
-
-   
-

@@ -25,7 +25,7 @@ namespace EPM.Controllers
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=DESKTOP-39COJ7F\\SQLEXPRESS;Initial Catalog=EPM;Integrated Security=True");
 
-            string sqlquery = "SELECT EmpUsername,EmpPassword FROM [dbo].[Employee] WHERE EmpUsername = @EmpUsername AND EmpPassword = @EmpPassword";
+            string sqlquery = "SELECT Emailid,EmpPassword FROM [dbo].[MEmployee] WHERE Emailid = @EmpUsername AND EmpPassword = @EmpPassword";
 
             sqlConnection.Open();
             if(sqlConnection.State == ConnectionState.Closed)

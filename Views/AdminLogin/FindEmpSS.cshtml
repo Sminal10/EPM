@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "FindEmpSS";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div id="Heading">
+    <h1 class="text-center font-weight-bolder"><i class="fa fa-file-text-o"></i>Find Emplyoee Salary Slip</h1>
+</div>
+
+<div id="dvFindSalarySlip" style="margin-top:30px;">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="ddlemp" id="lblemo">Select Employee</label>
+            <select class="form-control" id="ddlemp">
+                <option selected value="0">Select Employee</option>
+                <option value="name1">Payal Pawar</option>
+                <option value="name2">Sminal Patil</option>
+                <option value="name3">Aditya Patel</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="ddldetail" id="lbldetail">Select Month of Salary Details</label>
+            <select class="form-control" id="ddlemp">
+                <option selected value="0">Select Details</option>
+                <option value="sal1">April 2021</option>
+                <option value="sal2">May 2021</option>
+                <option value="sal3">June 2021</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            <input id="btnsearch" type="button" value="Search" />
+        </div>
+    </div>
+</div>

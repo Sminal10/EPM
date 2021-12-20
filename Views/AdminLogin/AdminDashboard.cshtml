@@ -9,22 +9,101 @@
 <!-- Welcome Message -->
 <div id="hdnVal"></div>
 <h4 class="text-center">Final Admin Dashboard</h4>
-<h2 class="text-center" id="txtWlcm"></h2>
 
 
 
 
+<div id="showDetails">
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">First Name: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">Middle Name: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">Last Name: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">Gender: </p>
+        </div>
+    </div>
+    <div class="row" style="margin-left:80px;">
+        <div class="col-md-6">
+            <p class="h3">Mobile Number: </p>
+        </div>
+        <div class="col-md-6">
+            <p class="h3">Alternate Nummber: </p>
+        </div>
+    </div>
+</div>
 
 <script>
 
     let val = document.getElementById("hdnValn").innerText;
 
     sessionStorage.setItem("username", val);
-    var username = sessionStorage.getItem("username");
-    console.log(username);
-    document.getElementById("txtWlcm").innerHTML = "Welcome " + username;
 
-    //let sessionval = sessionStorage.getItem("username");
+    //let c = String(@TempData["username"]);
 
+    document.getElementById("hdnVal").innerHTML = "<h2 class='text-center'>Welcome " + val + "</h2>";
+
+    let sessionval = sessionStorage.getItem("username");
+    $(document).ready(function () {
+        ShowAdmin();
+    })
+
+    function ShowAdmin() {
+        $("#showDetails").html('');
+        var strdata = '';
+        jQuery.support.cors = true;
+        $.ajax({
+            url: '/api/APIAdminDetails/GetSingleAdmin?username=' + val,
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                var sr = 0;
+                $.each(data, function (key, item) {
+                    sr += 1;
+                    strdata = '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                         '<p class="h3">First Name: '+item.fname+'</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">Middle Name:' +item.mname+' </p>' +
+                                    '</div>' +
+                              '</div>' +
+                              '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                        '<p class="h3">Last Name: '+item.lname+'</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">Gender: '+item.gender+'</p>' +
+                                    '</div>' +
+                              '</div>' +
+                              '<div class="row" style="margin-left:80px;">' +
+                                    '<div class="col-md-6" >' +
+                                        '<p class="h3">Mobile Number: ' +item.mNumber+'</p>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<p class="h3">Alternate Number:' +item.altNumber+' </p>' +
+                                    '</div>' +
+                              '</div>'
+                    $('#showDetails').append(strdata);
+
+
+                });
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+    function logout() {
+        document.getElementById("")
+    }
 
 </script>
