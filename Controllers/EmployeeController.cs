@@ -27,5 +27,15 @@ namespace EPM.Controllers
         {
             return View();
         }
+
+        public IActionResult Leave()
+        {
+            return View();
+        }
+
+        public IActionResult TMember()
+        {
+            return View();
+        }
     }
 }
